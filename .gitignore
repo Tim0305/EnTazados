@@ -1,0 +1,45 @@
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+
+# Ignorar archivos generados por Angular en entazados/
+entazados/dist/
+entazados/tmp/
+entazados/out-tsc/
+entazados/bazel-out/
+
+# Node
+entazados/node_modules/
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+entazados/.idea/
+entazados/.project
+entazados/.classpath
+entazados/.c9/
+entazados/*.launch
+entazados/.settings/
+entazados/*.sublime-workspace
+
+# Visual Studio Code
+entazados/.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Miscellaneous
+entazados/.angular/cache
+entazados/.sass-cache/
+entazados/connect.lock
+entazados/coverage/
+entazados/libpeerconnection.log
+entazados/testem.log
+entazados/typings/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Permitir SQL files
+!sql/*.sql
