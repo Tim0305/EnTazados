@@ -13,12 +13,69 @@
             <!-- Enlaces de navegación -->
             <div>
                <nav class="flex space-x-6 items-center">
-                  <a class="btn btn-ghost text-base" routerLink="/catalogo">Catálogo</a>
-                  <a class="btn btn-ghost text-base" routerLink="/preguntas-frecuentes">Preguntas Frecuentes</a>
-                  <a class="btn btn-ghost text-base" routerLink="/pedidos">Pedidos</a>
+                  <a class="btn btn-ghost text-base" routerLink="/catalogo">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book w-6 h-6"
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+                        <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+                        <path d="M3 6l0 13" />
+                        <path d="M12 6l0 13" />
+                        <path d="M21 6l0 13" />
+                     </svg>Catálogo</a>
 
-                  <a class="btn btn-ghost text-base" routerLink="/log-in">Iniciar Sesion</a>
-                  <a class="btn btn-ghost text-base" routerLink="/sign-up">Registrarse</a>
+                  <a class="btn btn-ghost text-base" routerLink="/preguntas-frecuentes">
+                     <svg xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-message-circle-question w-6 h-6" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path
+                           d="M15.02 19.52c-2.341 .736 -5 .606 -7.32 -.52l-4.7 1l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c1.649 1.407 2.575 3.253 2.742 5.152" />
+                        <path d="M19 22v.01" />
+                        <path d="M19 19a2.003 2.003 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483" />
+                     </svg>Preguntas Frecuentes</a>
+
+                  <a class="btn btn-ghost text-base" routerLink="/pedidos">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-receipt w-6 h-6"
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path
+                           d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16l-3 -2l-2 2l-2 -2l-2 2l-2 -2l-3 2m4 -14h6m-6 4h6m-2 4h2" />
+                     </svg>Pedidos</a>
+
+                  <a class="btn btn-ghost text-base" routerLink="/carrito">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart w-6 h-6"
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                        <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                        <path d="M17 17h-11v-14h-2" />
+                        <path d="M6 5l14 1l-1 7h-13" />
+                     </svg>Carro de compras</a>
+
+                  <a class="btn btn-ghost text-base" routerLink="/log-in">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-login w-6 h-6"
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M15 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                        <path d="M21 12h-13l3 -3" />
+                        <path d="M11 15l-3 -3" />
+                     </svg>Iniciar Sesion</a>
+                  <a class="btn btn-ghost text-base" routerLink="/sign-up">
+                     <svg xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-user-square-rounded w-6 h-6" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M12 13a3 3 0 1 0 0 -6a3 3 0 0 0 0 6z" />
+                        <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
+                        <path d="M6 20.05v-.05a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v.05" />
+                     </svg>Registrarse</a>
                </nav>
 
             </div>
@@ -32,33 +89,33 @@
       </div>
    </div>
 
-<footer class="bg-base-200 text-base-content py-8">
-   <div class="container mx-auto px-9">
-      <div class="flex justify-between">
-         <!-- Sección Nosotros -->
-         <div>
-            <h2 class="footer-title mb-4">Nosotros</h2>
-            <ul>
-               <li class="link link-hover mb-2">
-                  <a routerLink="/contacto">Contacto</a>
-               </li>
-            </ul>
-         </div>
+   <footer class="bg-base-200 text-base-content py-8">
+      <div class="container mx-auto px-9">
+         <div class="flex justify-between">
+            <!-- Sección Nosotros -->
+            <div>
+               <h2 class="footer-title mb-4">Nosotros</h2>
+               <ul>
+                  <li class="link link-hover mb-2">
+                     <a routerLink="/contacto">Contacto</a>
+                  </li>
+               </ul>
+            </div>
 
-         <!-- Sección Ayuda -->
-         <div>
-            <h2 class="footer-title mb-4">Informacion</h2>
-            <ul>
-               <li class="link link-hover mb-2">
-                  <a routerLink="/aviso-de-privacidad">Aviso de Privacidad</a>
-               </li>
+            <!-- Sección Ayuda -->
+            <div>
+               <h2 class="footer-title mb-4">Informacion</h2>
+               <ul>
+                  <li class="link link-hover mb-2">
+                     <a routerLink="/aviso-de-privacidad">Aviso de Privacidad</a>
+                  </li>
 
-               <li class="link link-hover mb-2">
-                  <a routerLink="/terminos-ycondiciones">Términos y Condiciones</a>
-               </li>
-            </ul>
+                  <li class="link link-hover mb-2">
+                     <a routerLink="/terminos-ycondiciones">Términos y Condiciones</a>
+                  </li>
+               </ul>
+            </div>
          </div>
+         <div class="mt-8 text-center">&copy; 2024 Kookay Boutique. Todos los derechos reservados.</div>
       </div>
-      <div class="mt-8 text-center">&copy; 2024 Kookay Boutique. Todos los derechos reservados.</div>
-   </div>
-</footer>
+   </footer>
