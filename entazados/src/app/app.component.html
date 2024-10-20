@@ -1,8 +1,7 @@
-<div class="min-h-screen flex flex-col justify-between bg-gray-100">
+<div class="min-h-screen flex flex-col justify-between">
    <!-- Contenido principal -->
    <div>
-      <!-- Barra de navegación -->
-      <div class="shadow-md bg-white">
+      <div class="shadow-md bg-base-100">
          <div class="px-9 py-6 flex justify-between items-center">
             <!-- Logo -->
             <div>
@@ -14,12 +13,16 @@
             <!-- Enlaces de navegación -->
             <div>
                <nav class="flex space-x-6 items-center">
-                  <a class="text-gray-600 hover:text-gray-900 text-lg" routerLink="/catalogo">Catálogo</a>
-                  <a class="text-gray-600 hover:text-gray-900 text-lg" routerLink="/preguntas-frecuentes">Preguntas Frecuentes</a>
-                  <a class="text-gray-600 hover:text-gray-900 text-lg" routerLink="/pedidos">Pedidos</a>
-                  <a class="text-gray-600 hover:text-gray-900 text-lg" routerLink="/contacto">Contacto</a>
+                  <a class="btn btn-ghost text-base" routerLink="/catalogo">Catálogo</a>
+                  <a class="btn btn-ghost text-base" routerLink="/preguntas-frecuentes">Preguntas Frecuentes</a>
+                  <a class="btn btn-ghost text-base" routerLink="/pedidos">Pedidos</a>
+
+                  <a class="btn btn-ghost text-base" routerLink="/log-in">Iniciar Sesion</a>
+                  <a class="btn btn-ghost text-base" routerLink="/sign-up">Registrarse</a>
                </nav>
+
             </div>
+
          </div>
       </div>
 
@@ -29,33 +32,33 @@
       </div>
    </div>
 
-   <!-- Footer -->
-   <footer class="bg-gray-900 text-white py-8 mt-12">
-      <div class="max-w-7xl mx-auto px-4">
-      <div class="flex flex-col md:flex-row justify-around items-start gap-8">
-
-         <!-- Contacto -->
-         <div class="text-center md:text-left">
-            <h3 class="text-lg font-semibold mb-4">Contacto</h3>
+<footer class="bg-base-200 text-base-content py-8">
+   <div class="container mx-auto px-9">
+      <div class="flex justify-between">
+         <!-- Sección Nosotros -->
+         <div>
+            <h2 class="footer-title mb-4">Nosotros</h2>
             <ul>
-            <li><a class="text-gray-400 hover:text-gray-200" routerLink="/contacto">Contacto</a></li>
+               <li class="link link-hover mb-2">
+                  <a routerLink="/contacto">Contacto</a>
+               </li>
             </ul>
          </div>
 
-         <!-- Enlaces importantes -->
-         <div class="text-center md:text-left">
-            <h3 class="text-lg font-semibold mb-4">Información</h3>
-            <ul class="space-y-2">
-            <li><a class="text-gray-400 hover:text-gray-200" routerLink="/aviso-de-privacidad">Aviso de Privacidad</a></li>
-            <li><a class="text-gray-400 hover:text-gray-200" routerLink="/terminos-ycondiciones">Términos y Condiciones</a></li>
+         <!-- Sección Ayuda -->
+         <div>
+            <h2 class="footer-title mb-4">Informacion</h2>
+            <ul>
+               <li class="link link-hover mb-2">
+                  <a routerLink="/aviso-de-privacidad">Aviso de Privacidad</a>
+               </li>
+
+               <li class="link link-hover mb-2">
+                  <a routerLink="/terminos-ycondiciones">Términos y Condiciones</a>
+               </li>
             </ul>
          </div>
       </div>
-   
-      <!-- Copyright -->
-      <div class="mt-8 text-center text-sm">
-         <p>&copy; 2024 EnTazados. Todos los derechos reservados.</p>
-      </div>
-      </div>
-   </footer>
-</div>
+      <div class="mt-8 text-center">&copy; 2024 Kookay Boutique. Todos los derechos reservados.</div>
+   </div>
+</footer>
