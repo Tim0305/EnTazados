@@ -1,62 +1,65 @@
-<body class="h-screen flex">
+<body class="h-screen flex flex-col">
 
-   <!-- Lista de pedidos ordenados (Izquierda) -->
-   <div class="w-1/4 bg-white p-6 shadow-md overflow-y-auto h-full">
-      <h2 class="text-center text-xl font-semibold text-gray-800 mb-6">Pedidos Ordenados</h2>
-      <div class="mb-4 p-4 border border-gray-300 rounded-lg bg-gray-50">
-         <p class="text-gray-700">Pedido #001 - Fecha: 19/10/2024</p>
-         <p class="text-gray-600">Estado: En preparación</p>
-      </div>
-      <div class="mb-4 p-4 border border-gray-300 rounded-lg bg-gray-50">
-         <p class="text-gray-700">Pedido #002 - Fecha: 18/10/2024</p>
-         <p class="text-gray-600">Estado: Enviado</p>
-      </div>
-      <div class="mb-4 p-4 border border-gray-300 rounded-lg bg-gray-50">
-         <p class="text-gray-700">Pedido #003 - Fecha: 17/10/2024</p>
-         <p class="text-gray-600">Estado: Entregado</p>
-      </div>
-   </div>
-
-   <!-- Contenedor de imágenes de pedidos (Centro) -->
-   <div class="flex flex-col items-center justify-center w-1/2 gap-6 p-4">
-      <img src="https://via.placeholder.com/400x300?text=Pedido+1" alt="Imagen del Pedido 1"
-         class="rounded-lg shadow-md">
-      <img src="https://via.placeholder.com/400x300?text=Pedido+2" alt="Imagen del Pedido 2"
-         class="rounded-lg shadow-md">
-      <img src="https://via.placeholder.com/400x300?text=Pedido+3" alt="Imagen del Pedido 3"
-         class="rounded-lg shadow-md">
-   </div>
-
-   <!-- Contenedor de pedidos realizados (Derecha) -->
-   <div class="absolute top-4 right-4 bg-white p-6 rounded-lg shadow-md max-w-xs w-full">
-      <h1 class="text-lg font-semibold text-gray-800 mb-6">Pedidos Realizados</h1>
-      <div class="mb-4 p-4 border border-gray-300 rounded-lg">
-         <p class="tracking-code font-bold text-gray-700">Código: <span>1234567890</span></p>
-         <p class="text-blue-500 hover:underline"><a href="https://www.fedex.com/es-mx/home.html"
-               target="_blank">Rastrear en FedEx</a></p>
-         <div class="mt-4 flex justify-between">
-            <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
-               onclick="cancelOrder('1234567890')">Cancelar</button>
+   <!-- Contenido principal -->
+   <div class="flex flex-1">
+      <!-- Lista de pedidos ordenados (Izquierda) -->
+      <div class="w-1/4 bg-white p-6 shadow-md overflow-y-auto h-full">
+         <h2 class="text-center text-xl font-semibold text-gray-800 mb-6">Pedidos Ordenados</h2>
+         <div class="mb-4 p-4 border border-gray-300 rounded-lg bg-gray-50">
+            <p class="text-gray-700">Pedido #001 - Fecha: 19/10/2024</p>
+            <p class="text-gray-600">Estado: En preparación</p>
+         </div>
+         <div class="mb-4 p-4 border border-gray-300 rounded-lg bg-gray-50">
+            <p class="text-gray-700">Pedido #002 - Fecha: 18/10/2024</p>
+            <p class="text-gray-600">Estado: Enviado</p>
+         </div>
+         <div class="mb-4 p-4 border border-gray-300 rounded-lg bg-gray-50">
+            <p class="text-gray-700">Pedido #003 - Fecha: 17/10/2024</p>
+            <p class="text-gray-600">Estado: Entregado</p>
          </div>
       </div>
 
-      <div class="mb-4 p-4 border border-gray-300 rounded-lg">
-         <p class="tracking-code font-bold text-gray-700">Código: <span>0987654321</span></p>
-         <p class="text-blue-500 hover:underline"><a href="https://www.fedex.com/es-mx/home.html"
-               target="_blank">Rastrear en FedEx</a></p>
-         <div class="mt-4 flex justify-between">
-            <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
-               onclick="cancelOrder('0987654321')">Cancelar</button>
-         </div>
+      <!-- Contenedor de imágenes de pedidos (Centro) -->
+      <div class="flex flex-col items-center justify-center w-1/2 gap-6 p-4">
+         <img src="https://via.placeholder.com/400x300?text=Pedido+1" alt="Imagen del Pedido 1"
+            class="rounded-lg shadow-md">
+         <img src="https://via.placeholder.com/400x300?text=Pedido+2" alt="Imagen del Pedido 2"
+            class="rounded-lg shadow-md">
+         <img src="https://via.placeholder.com/400x300?text=Pedido+3" alt="Imagen del Pedido 3"
+            class="rounded-lg shadow-md">
       </div>
 
-      <div class="mb-4 p-4 border border-gray-300 rounded-lg">
-         <p class="tracking-code font-bold text-gray-700">Código: <span>0987654321</span></p>
-         <p class="text-blue-500 hover:underline"><a href="https://www.fedex.com/es-mx/home.html"
-               target="_blank">Rastrear en FedEx</a></p>
-         <div class="mt-4 flex justify-between">
-            <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
-               onclick="cancelOrder('0987654321')">Cancelar</button>
+      <!-- Contenedor de pedidos realizados (Derecha) -->
+      <div class="w-1/4 bg-white p-6 rounded-lg shadow-md max-w-xs h-full overflow-y-auto">
+         <h1 class="text-lg font-semibold text-gray-800 mb-6">Pedidos Realizados</h1>
+         <div class="mb-4 p-4 border border-gray-300 rounded-lg">
+            <p class="tracking-code font-bold text-gray-700">Código: <span>1234567890</span></p>
+            <p class="text-blue-500 hover:underline"><a href="https://www.fedex.com/es-mx/home.html"
+                  target="_blank">Rastrear en FedEx</a></p>
+            <div class="mt-4 flex justify-between">
+               <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
+                  onclick="cancelOrder('1234567890')">Cancelar</button>
+            </div>
+         </div>
+
+         <div class="mb-4 p-4 border border-gray-300 rounded-lg">
+            <p class="tracking-code font-bold text-gray-700">Código: <span>0987654321</span></p>
+            <p class="text-blue-500 hover:underline"><a href="https://www.fedex.com/es-mx/home.html"
+                  target="_blank">Rastrear en FedEx</a></p>
+            <div class="mt-4 flex justify-between">
+               <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
+                  onclick="cancelOrder('0987654321')">Cancelar</button>
+            </div>
+         </div>
+
+         <div class="mb-4 p-4 border border-gray-300 rounded-lg">
+            <p class="tracking-code font-bold text-gray-700">Código: <span>0987654321</span></p>
+            <p class="text-blue-500 hover:underline"><a href="https://www.fedex.com/es-mx/home.html"
+                  target="_blank">Rastrear en FedEx</a></p>
+            <div class="mt-4 flex justify-between">
+               <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
+                  onclick="cancelOrder('0987654321')">Cancelar</button>
+            </div>
          </div>
       </div>
    </div>
