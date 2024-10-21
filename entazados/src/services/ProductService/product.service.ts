@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../../models/Product.model';
-import { XMLService } from '../XMLService/xml.service';
 
 @Injectable({
   providedIn: 'root',
@@ -67,11 +66,5 @@ export class ProductService {
 
   getProducts() {
     return this.products;
-  }
-
-  constructor(private xmlService: XMLService) {
-    // this.xmlService.getProducts().subscribe((data) => {
-    //   this.products = data;
-    // });
   }
 }
