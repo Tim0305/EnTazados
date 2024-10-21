@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { CatalogListComponent } from './catalog-list/catalog-list.component';
 import { PreguntasFrecuentesComponent } from './preguntas-frecuentes/preguntas-frecuentes.component';
 import { AvisoDePrivacidadComponent } from './aviso-de-privacidad/aviso-de-privacidad.component';
-import { TerminosYCondicionesComponent } from './terminos-ycondiciones/terminos-ycondiciones.component';
+import { TerminosYCondicionesComponent } from './terminos-y-condiciones/terminos-y-condiciones.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { LogInComponent } from './log-in/log-in.component';
