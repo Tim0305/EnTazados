@@ -22,6 +22,7 @@ export class ShoppingCartComponent {
     private receiptService: ReceiptService
   ) {
     this.products = cartService.getItems();
+    console.log(this.products);
     this.total = cartService.getTotal();
     if (this.products.length === 0) {
       this.envio = 0;
