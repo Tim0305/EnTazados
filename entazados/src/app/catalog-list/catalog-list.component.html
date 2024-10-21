@@ -6,7 +6,7 @@
       <div *ngFor="let product of products" class="card bg-base-100 shadow-md">
          <div class="card-body">
             <figure class="w-full mb-4">
-               <img [src]="product.imagen" alt="{{ product.nombre }}" class="object-cover w-full h-full rounded-md"/>
+               <img [src]="product.imagenURL" alt="{{ product.nombre }}" class="object-cover w-full h-full rounded-md"/>
             </figure>
             <h2 class="card-title">{{ product.nombre }}</h2>
             <p>${{ product.precio }}</p>
