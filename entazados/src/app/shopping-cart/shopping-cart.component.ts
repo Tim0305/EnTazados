@@ -14,6 +14,8 @@ import { CommonModule } from '@angular/common';
 export class ShoppingCartComponent {
   products: Product[] = [];
   total: number = 0;
+  envio: number = 100;
+  iva: number = 0;
 
   constructor(
     private cartService: CartService,
@@ -21,12 +23,20 @@ export class ShoppingCartComponent {
   ) {
     this.products = cartService.getItems();
     this.total = cartService.getTotal();
+    if (this.products.length === 0) {
+      this.envio = 0;
+    }
+    this.iva = this.total * 0.16;
   }
 
   removeFromCart(productId: number) {
     this.cartService.removeFromCart(productId);
     this.products = this.cartService.getItems();
+    if (this.products.length === 0) {
+      this.envio = 0;
+    }
     this.total = this.cartService.getTotal();
+    this.iva = this.total * 0.16;
   }
 
   checkout() {

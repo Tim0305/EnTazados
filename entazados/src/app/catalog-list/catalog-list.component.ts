@@ -17,16 +17,14 @@ export class CatalogListComponent {
   constructor(
     private cartService: CartService,
     private productService: ProductService
-  ) {}
+  ) {
+    this.productService.fetchProducts();
+    this.products = this.productService.getProducts();
+    console.log(this.products);
+  }
 
   addToCart(product: Product) {
     this.cartService.addToCart(product);
     console.log(this.cartService.getItems());
-  }
-
-  ngOnInit(): void {
-    this.productService.fetchProducts();
-    this.products = this.productService.getProducts();
-    console.log(this.products);
   }
 }
