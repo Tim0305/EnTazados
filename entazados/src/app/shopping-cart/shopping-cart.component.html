@@ -1,74 +1,63 @@
 <div class="container mx-auto px-6 py-8">
-  <h2 class="text-3xl font-bold mb-8 text-center">Carrito de Compras</h2>
+   <h2 class="text-3xl font-bold mb-8 text-center">Carrito de Compras</h2>
 
-  <div class="flex flex-col lg:flex-row lg:space-x-8">
-    <!-- Lista de productos del carrito -->
-    <div class="w-full lg:w-3/4">
-      <div class="flex flex-wrap gap-6 max-h-[60vh] overflow-y-auto">
-        <div *ngIf="products.length === 0">
-          <p>No hay productos</p>
-        </div>
-        <div
-          *ngFor="let product of products"
-          class="relative card bg-base-100 shadow-md p-4 mb-4 flex flex-col w-full sm:w-[calc(50%-1.5rem)] md:w-[calc(33.333%-1.5rem)] lg:w-[calc(25%-1.5rem)]"
-        >
-          <figure class="w-full mb-4">
-            <img
-              src="https://via.placeholder.com/100x100"
-              alt="{{ product.nombre }}"
-              class="object-cover w-full h-full rounded-md"
-            />
-          </figure>
-
-          <div class="flex-1 flex flex-col justify-between">
-            <div class="ml-0">
-              <h2 class="text-lg font-semibold">{{ product.nombre }}</h2>
-              <p class="text-gray-600">{{ product.precio | currency }}</p>
-              <p class="text-gray-600">{{ product.descripcion }}</p>
+   <div class="flex flex-col lg:flex-row lg:space-x-8">
+      <!-- Lista de productos del carrito -->
+      <div class="w-full lg:w-3/4">
+         <div class="flex flex-wrap gap-6 max-h-full overflow-y-auto h-full">
+            <div *ngIf="products.length === 0" class="w-full flex justify-center items-center h-full">
+               <p class="text-center font-semibold">Carrito de compras vacio</p>
             </div>
+            <div *ngFor="let product of products"
+               class="relative card bg-base-100 shadow-md p-4 mb-4 flex flex-col w-full sm:w-[calc(50%-1.5rem)] md:w-[calc(33.333%-1.5rem)] lg:w-[calc(25%-1.5rem)]">
+               <figure class="w-full mb-4">
+                  <img [src]="product.imagen" alt="{{ product.nombre }}" class="object-cover w-full h-full rounded-md"/>
+               </figure>
 
-            <div class="mt-4">
-              <button
-                (click)="removeFromCart(product.id)"
-                class="btn btn-error w-full"
-              >
-                Eliminar
-              </button>
+               <div class="flex-1 flex flex-col justify-between">
+                  <div class="ml-0">
+                     <h2 class="text-lg font-semibold">{{ product.nombre }}</h2>
+                     <p class="text-gray-600">{{ product.precio | currency }}</p>
+                     <p class="text-gray-600">{{ product.descripcion }}</p>
+                  </div>
+
+                  <div class="mt-4">
+                     <button (click)="removeFromCart(product.id)" class="btn btn-error w-full">
+                        Eliminar
+                     </button>
+                  </div>
+               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Resumen del carrito -->
-    <div
-      class="w-full lg:w-1/4 bg-white shadow-md rounded-lg p-6 mt-8 lg:mt-0 flex-shrink-0 h-[300px]"
-    >
-      <h3 class="text-xl font-semibold mb-6 text-center">Resumen del Pedido</h3>
-
-      <div class="mb-4">
-        <div class="flex justify-between mb-2">
-          <span class="text-gray-600">Subtotal:</span>
-          <span class="font-semibold">{{ total | currency }}</span>
-        </div>
-        <div class="flex justify-between mb-2">
-          <span class="text-gray-600">IVA:</span>
-          <span class="font-semibold">{{ iva | currency }}</span>
-        </div>
-        <div *ngIf="products.length !== 0" class="flex justify-between mb-2">
-          <span class="text-gray-600">Envío:</span>
-          <span class="font-semibold">$100.00</span>
-        </div>
-
-        <div class="flex justify-between mb-4 border-t pt-4">
-          <span class="font-bold">Total:</span>
-          <span class="font-bold">{{ total + iva + envio | currency }}</span>
-        </div>
+         </div>
       </div>
 
-      <button (click)="checkout()" class="btn btn-neutral w-full">
-        Proceder al Pago
-      </button>
-    </div>
-  </div>
+      <!-- Resumen del carrito -->
+      <div class="w-full lg:w-1/4 bg-white shadow-md rounded-lg p-6 mt-8 lg:mt-0 flex-shrink-0 h-[300px]">
+         <h3 class="text-xl font-semibold mb-6 text-center">Resumen del Pedido</h3>
+
+         <div class="mb-4">
+            <div class="flex justify-between mb-2">
+               <span class="text-gray-600">Subtotal:</span>
+               <span class="font-semibold">{{ total | currency }}</span>
+            </div>
+            <div class="flex justify-between mb-2">
+               <span class="text-gray-600">IVA:</span>
+               <span class="font-semibold">{{ iva | currency }}</span>
+            </div>
+            <div *ngIf="products.length !== 0" class="flex justify-between mb-2">
+               <span class="text-gray-600">Envío:</span>
+               <span class="font-semibold">$100.00</span>
+            </div>
+
+            <div class="flex justify-between mb-4 border-t pt-4">
+               <span class="font-bold">Total:</span>
+               <span class="font-bold">{{ total + iva + envio | currency }}</span>
+            </div>
+         </div>
+
+         <button (click)="checkout()" class="btn btn-neutral w-full">
+            Proceder al Pago
+         </button>
+      </div>
+   </div>
 </div>
