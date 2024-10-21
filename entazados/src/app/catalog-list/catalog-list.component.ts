@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/CartService/cart.service';
 import { Product } from '../../models/Product.model';
 import { ProductService } from '../../services/ProductService/product.service';
@@ -17,12 +17,16 @@ export class CatalogListComponent {
   constructor(
     private cartService: CartService,
     private productService: ProductService
-  ) {
-    this.products = productService.getProducts();
-  }
+  ) {}
 
   addToCart(product: Product) {
     this.cartService.addToCart(product);
     console.log(this.cartService.getItems());
+  }
+
+  ngOnInit(): void {
+    this.productService.fetchProducts();
+    this.products = this.productService.getProducts();
+    console.log(this.products);
   }
 }
