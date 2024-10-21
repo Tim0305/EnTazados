@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: entazados
 -- ------------------------------------------------------
--- Server version	8.0.39
+-- Server version	8.0.38
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,86 +16,93 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `cliente`
+-- Table structure for table `clientes`
 --
 
-DROP TABLE IF EXISTS `cliente`;
+DROP TABLE IF EXISTS `clientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `cliente` (
+CREATE TABLE `clientes` (
   `ID_Cliente` int NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(30) NOT NULL,
-  `Apellidos` varchar(60) NOT NULL,
-  `Correo` varchar(50) NOT NULL,
-  `Direccion` varchar(100) NOT NULL,
-  `Password` varchar(255) NOT NULL,
-  PRIMARY KEY (`ID_Cliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  `nombre` varchar(30) NOT NULL,
+  `apellidos` varchar(60) NOT NULL,
+  `correo` varchar(30) NOT NULL,
+  `direccion` varchar(100) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  PRIMARY KEY (`ID_Cliente`),
+  UNIQUE KEY `correo` (`correo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `cliente`
+-- Dumping data for table `clientes`
 --
 
-LOCK TABLES `cliente` WRITE;
-/*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-/*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
+LOCK TABLES `clientes` WRITE;
+/*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `pedido`
+-- Table structure for table `flyway_schema_history`
 --
 
-DROP TABLE IF EXISTS `pedido`;
+DROP TABLE IF EXISTS `flyway_schema_history`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `pedido` (
-  `ID_Pedido` int NOT NULL AUTO_INCREMENT,
-  `Fecha` datetime NOT NULL,
-  `ID_Cliente` int NOT NULL,
-  `ID_Producto` int NOT NULL,
-  PRIMARY KEY (`ID_Pedido`),
-  KEY `fk_Pedido_Cliente_idx` (`ID_Cliente`),
-  KEY `fk_Pedido_Producto1_idx` (`ID_Producto`),
-  CONSTRAINT `fk_Pedido_Cliente` FOREIGN KEY (`ID_Cliente`) REFERENCES `cliente` (`ID_Cliente`),
-  CONSTRAINT `fk_Pedido_Producto1` FOREIGN KEY (`ID_Producto`) REFERENCES `producto` (`ID_Producto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+CREATE TABLE `flyway_schema_history` (
+  `installed_rank` int NOT NULL,
+  `version` varchar(50) DEFAULT NULL,
+  `description` varchar(200) NOT NULL,
+  `type` varchar(20) NOT NULL,
+  `script` varchar(1000) NOT NULL,
+  `checksum` int DEFAULT NULL,
+  `installed_by` varchar(100) NOT NULL,
+  `installed_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `execution_time` int NOT NULL,
+  `success` tinyint(1) NOT NULL,
+  PRIMARY KEY (`installed_rank`),
+  KEY `flyway_schema_history_s_idx` (`success`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `pedido`
+-- Dumping data for table `flyway_schema_history`
 --
 
-LOCK TABLES `pedido` WRITE;
-/*!40000 ALTER TABLE `pedido` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pedido` ENABLE KEYS */;
+LOCK TABLES `flyway_schema_history` WRITE;
+/*!40000 ALTER TABLE `flyway_schema_history` DISABLE KEYS */;
+INSERT INTO `flyway_schema_history` VALUES (1,'1','create-table-tazas','SQL','V1__create-table-tazas.sql',1287709946,'root','2024-10-20 15:10:00',80,1),(2,'2','create-table-clientes','SQL','V2__create-table-clientes.sql',-3294157,'root','2024-10-20 15:22:55',76,1);
+/*!40000 ALTER TABLE `flyway_schema_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `producto`
+-- Table structure for table `tazas`
 --
 
-DROP TABLE IF EXISTS `producto`;
+DROP TABLE IF EXISTS `tazas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `producto` (
-  `ID_Producto` int NOT NULL,
-  `Nombre` varchar(45) NOT NULL,
-  `Precio` decimal(10,2) NOT NULL,
-  `Descripcion` varchar(60) NOT NULL,
-  `Cantidad` int NOT NULL,
-  `EsVisible` tinyint NOT NULL DEFAULT '1',
-  PRIMARY KEY (`ID_Producto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+CREATE TABLE `tazas` (
+  `ID_Taza` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(30) NOT NULL,
+  `descripcion` varchar(30) NOT NULL,
+  `precio` double NOT NULL,
+  `imagen` varchar(100) NOT NULL,
+  `cantidad` int NOT NULL,
+  `existe` bit(1) NOT NULL,
+  PRIMARY KEY (`ID_Taza`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `producto`
+-- Dumping data for table `tazas`
 --
 
-LOCK TABLES `producto` WRITE;
-/*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-/*!40000 ALTER TABLE `producto` ENABLE KEYS */;
+LOCK TABLES `tazas` WRITE;
+/*!40000 ALTER TABLE `tazas` DISABLE KEYS */;
+INSERT INTO `tazas` VALUES (1,'Taza 1','Taza 1 ejemplo',99.99,'https://res.cloudinary.com/dyzja6mqy/image/upload/v1729477702/taza3_khojjq.png',1,_binary ''),(2,'Taza 2','Taza 2 ejemplo',200,'https://res.cloudinary.com/dyzja6mqy/image/upload/v1729477710/taza10_tglcog.png',1,_binary ''),(3,'Taza 3','Taza 3 ejemplo',300,'https://res.cloudinary.com/dyzja6mqy/image/upload/v1729477702/taza3_khojjq.png',1,_binary ''),(4,'Taza 4','Taza 4 ejemplo',400,'https://res.cloudinary.com/dyzja6mqy/image/upload/v1729477702/taza2_msgcxb.png',1,_binary ''),(5,'Taza 5','Taza 5 ejemplo',500,'https://res.cloudinary.com/dyzja6mqy/image/upload/v1729477702/taza4_ik5x7a.png',1,_binary ''),(6,'Taza 6','Taza 6 ejemplo',600,'https://res.cloudinary.com/dyzja6mqy/image/upload/v1729477702/taza5_yrnhdz.png',1,_binary ''),(7,'Taza 7','Taza 7 ejemplo',700,'https://res.cloudinary.com/dyzja6mqy/image/upload/v1729477702/taza6_guh5di.png',1,_binary ''),(8,'Taza 8','Taza 8 ejemplo',800,'https://res.cloudinary.com/dyzja6mqy/image/upload/v1729477710/taza7_wuyeo5.png',1,_binary ''),(9,'Taza 9','Taza 9 ejemplo',900,'https://res.cloudinary.com/dyzja6mqy/image/upload/v1729477710/taza8_l7ptth.png',1,_binary ''),(10,'Taza 10','Taza 10 ejemplo',1000,'https://res.cloudinary.com/dyzja6mqy/image/upload/v1729477710/taza9_fj1t9l.png',1,_binary ''),(11,'Taza 12','Taza Ejemplo 10',700.99,'https://res.cloudinary.com/dyzja6mqy/image/upload/v1729477702/taza3_khojjq.png',21,_binary '');
+/*!40000 ALTER TABLE `tazas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -107,4 +114,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-15 13:57:30
+-- Dump completed on 2024-10-20 21:24:32
