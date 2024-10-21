@@ -1,25 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductoService } from '../services/producto.service';
+import { Component } from '@angular/core';
+import { CartService } from '../../services/CartService/cart.service';
+import { Product } from '../../models/Product.model';
+import { ProductService } from '../../services/ProductService/product.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
-   selector: 'app-catalogo',
-   templateUrl: './catalogo.component.html',
-   styleUrls: ['./catalogo.component.css']
+  selector: 'app-catalog-list',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './catalog-list.component.html',
+  styleUrl: './catalog-list.component.css',
 })
-export class CatalogoComponent implements OnInit {
-   public productos: any[] = [];
+export class CatalogListComponent {
+  products: Product[] = [];
 
-   constructor(private productService: ProductoService) { }
+  constructor(
+    private cartService: CartService,
+    private productService: ProductService
+  ) {
+    this.products = productService.getProducts();
+  }
 
-   ngOnInit(): void {
-      // Llamar al servicio para obtener los productos desde la API
-      this.productService.getProducts().subscribe(
-         (response) => {
-            this.productos = response; // Asignar la respuesta de la API a la variable 'productos'
-         },
-         (error) => {
-            console.error('Error al obtener los productos:', error); // Manejo de errores
-         }
-      );
-   }
+  addToCart(product: Product) {
+    this.cartService.addToCart(product);
+    console.log(this.cartService.getItems());
+  }
 }
