@@ -5,22 +5,14 @@
     <!-- Lista de productos del carrito -->
     <div class="w-full lg:w-3/4">
       <div class="flex flex-wrap gap-6 max-h-full overflow-y-auto h-full">
-        <div
-          *ngIf="products.length === 0"
-          class="w-full flex justify-center items-center h-full"
-        >
+        <div *ngIf="products.length === 0" class="w-full flex justify-center items-center h-full">
           <p class="text-center font-semibold">Carrito de compras vacio</p>
         </div>
-        <div
-          *ngFor="let product of products"
-          class="relative card bg-base-100 shadow-md p-4 mb-4 flex flex-col w-full sm:w-[calc(50%-1.5rem)] md:w-[calc(33.333%-1.5rem)] lg:w-[calc(25%-1.5rem)]"
-        >
+        <div *ngFor="let product of products"
+          class="relative card bg-base-100 shadow-md p-4 mb-4 flex flex-col w-full sm:w-[calc(50%-1.5rem)] md:w-[calc(33.333%-1.5rem)] lg:w-[calc(25%-1.5rem)]">
           <figure class="w-full mb-4">
-            <img
-              src="{{ product.imagenUrl }}"
-              alt="{{ product.nombre }}"
-              class="object-cover w-full h-full rounded-md"
-            />
+            <img src="{{ product.imagenUrl }}" alt="{{ product.nombre }}"
+              class="object-cover w-full h-full rounded-md" />
           </figure>
 
           <div class="flex-1 flex flex-col justify-between">
@@ -31,10 +23,7 @@
             </div>
 
             <div class="mt-4">
-              <button
-                (click)="removeFromCart(product.id)"
-                class="btn btn-error w-full"
-              >
+              <button (click)="removeFromCart(product.id)" class="btn btn-error w-full">
                 Eliminar
               </button>
             </div>
@@ -44,9 +33,7 @@
     </div>
 
     <!-- Resumen del carrito -->
-    <div
-      class="w-full lg:w-1/4 bg-white shadow-md rounded-lg p-6 mt-8 lg:mt-0 flex-shrink-0 h-[300px]"
-    >
+    <div class="w-full lg:w-1/4 bg-white shadow-md rounded-lg p-6 mt-8 lg:mt-0 flex-shrink-0 h-[400px]">
       <h3 class="text-xl font-semibold mb-6 text-center">Resumen del Pedido</h3>
 
       <div class="mb-4">
@@ -68,10 +55,12 @@
           <span class="font-bold">{{ total + iva + envio | currency }}</span>
         </div>
       </div>
-
       <button (click)="checkout()" class="btn btn-neutral w-full">
         Proceder al Pago
       </button>
+      <div class=" border-t pt-4"><app-paypal-button></app-paypal-button></div>
+      
     </div>
+    
   </div>
 </div>

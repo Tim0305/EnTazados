@@ -3,11 +3,12 @@ import { CartService } from '../../services/CartService/cart.service';
 import { Product } from '../../models/Product.model';
 import { ReceiptService } from '../../services/ReceiptService/receipt.service';
 import { CommonModule } from '@angular/common';
+import { PaypalButtonComponent } from '../paypal-button/paypal-button.component'; // Asegúrate de importar
 
 @Component({
   selector: 'app-shopping-cart',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, PaypalButtonComponent],
   templateUrl: './shopping-cart.component.html',
   styleUrl: './shopping-cart.component.css',
 })
