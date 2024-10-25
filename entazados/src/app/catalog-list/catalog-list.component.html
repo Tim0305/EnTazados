@@ -10,7 +10,7 @@
                   class="object-cover w-full h-full rounded-md" />
             </figure>
             <h2 class="card-title">{{ product.nombre }}</h2>
-            <p>${{ product.descripcion }}</p>
+            <p>{{ product.descripcion }}</p>
             <p>${{ product.precio }}</p>
             <div class="card-actions justify-end">
                <button (click)="addToCart(product)" class="btn btn-primary">
