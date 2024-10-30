@@ -1,5 +1,5 @@
 <div class="container mx-auto px-6 py-8">
-   <h2 class="text-3xl font-bold mb-6 text-center">Catálogo de Productos</h2>
+  <h2 class="text-3xl font-bold mb-6 text-center">Catálogo de Productos</h2>
 
    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       <!-- Ciclo para recorrer los productos -->
@@ -10,7 +10,7 @@
                   class="object-cover w-full h-full rounded-md" />
             </figure>
             <h2 class="card-title">{{ product.nombre }}</h2>
-            <p>{{ product.descripcion }}</p>
+            <p>${{ product.descripcion }}</p>
             <p>${{ product.precio }}</p>
             <div class="card-actions justify-end">
                <button (click)="addToCart(product)" class="btn btn-primary">
