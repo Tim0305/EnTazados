@@ -55,10 +55,9 @@
           <span class="font-bold">{{ total + iva + envio | currency }}</span>
         </div>
       </div>
-      <button (click)="checkout()" class="btn btn-neutral w-full">
-        Proceder al Pago
-      </button>
-      <div class=" border-t pt-4"><app-paypal-button></app-paypal-button></div>
+      <div class=" border-t pt-4">
+         <app-paypal-button [total]="total + iva + envio" [productos]="products"></app-paypal-button>
+      </div>
       
     </div>
     
