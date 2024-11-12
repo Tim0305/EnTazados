@@ -6,6 +6,7 @@ import { Usuario } from '../../models/Usuario.model';
 })
 export class UsuarioService {
    private usuario: any;
+   private rol: number = 0; //0 = no logeado, 1 = administrador, 2 = usuario normal
 
    constructor() { }
 
@@ -15,5 +16,10 @@ export class UsuarioService {
 
    setUsuario(newUsuario: Usuario){
       this.usuario = newUsuario;
+      this.rol = newUsuario.rol;
+   }
+
+   getRol() {
+      return this.rol;
    }
 }

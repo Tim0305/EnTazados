@@ -4,5 +4,5 @@ export interface Usuario {
    apellidos: string;
    correo: number;
    direccion: string;
-   rol: number; //0 = no logeado, 1 = administrador, 2 = usario normal
+   rol: number;
 }
