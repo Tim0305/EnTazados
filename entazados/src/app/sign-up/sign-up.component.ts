@@ -3,6 +3,7 @@ import { Usuario } from '../../models/Usuario.model';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
+
 @Component({
   selector: 'app-sign-up',
   standalone: true,
@@ -10,38 +11,34 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css'
 })
+
 export class SignUpComponent {
-   private apiURL = 'http://localhost:8080/tazas'; // URL de la API
+   private apiURL = 'http://localhost:8080/usuarios'; // URL de la API
 
    // Propiedades para el nuevo producto
-   usuario: Usuario = {
-      id_Cliente: 0,
+   usuarios: any = {
       nombre: '',
       apellidos: '',
       correo: '',
       direccion: '',
-      rol: 0,
       password: ''
    };
 
    constructor(private http: HttpClient) {}
 
-   onClickAgregar() {
-      // Realizar una solicitud POST con el objeto `product` al API
-      this.http.post(this.apiURL, this.usuario).subscribe(
+   onClickAgregarUsuario() {
+      console.log('Datos enviados:', this.usuarios);
+      this.http.post(this.apiURL, this.usuarios).subscribe(
          () => {
             alert('Usuario registrado exitosamente');
             // Aquí puedes limpiar el formulario o mostrar un mensaje de éxito si es necesario
-            this.usuario = {
-               id_Cliente: 0,
+            this.usuarios = {
                nombre: '',
                apellidos: '',
                correo: '',
                direccion: '',
                rol: 0,
-               password: ''
             };
-
          },
          (error) => {
             console.error('Error al registrar el usuario:', error);

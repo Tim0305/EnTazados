@@ -7,10 +7,10 @@
       </div>
    </div>
 
-   <form (ngSubmit)="onClickAgregar()">
+   <form>
       <div class="flex flex-wrap gap-16">
          <!-- Columna para precios y otros detalles -->
-         <div class="flex flex-col flex-1 max-w-sm gap-2">
+         <div class="flex flex-col flex-1 max-w-sm gap-1">
             <span class="label-text font-medium">Nombre</span>
             <input type="text" name="nombre" placeholder="Nombre" class="input input-bordered w-full mb-1" [(ngModel)]="product.nombre" required/>
             

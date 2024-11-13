@@ -34,7 +34,6 @@ export class ProductService {
       this.http.get<Product[]>(this.apiURL).subscribe(
          (data) => {
             this.products = data; // Almacenar la respuesta en la lista local
-            console.log('Productos obtenidos:', this.products);
          },
          (error) => {
             console.error('Error al obtener los productos:', error);
