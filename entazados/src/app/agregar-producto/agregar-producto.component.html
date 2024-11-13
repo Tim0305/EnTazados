@@ -1,0 +1,31 @@
+<div class="px-9">
+   <div class="flex flex-row items-center justify-between">
+      <h1 class="text-xl font-semibold flex">Crear nuevo producto al sistema</h1>
+      
+      <div class="ml-auto py-4">
+         <button class="btn btn-neutral" (click)="onClickAgregar()">Crear taza</button>
+      </div>
+   </div>
+
+   <form (ngSubmit)="onClickAgregar()">
+      <div class="flex flex-wrap gap-16">
+         <!-- Columna para precios y otros detalles -->
+         <div class="flex flex-col flex-1 max-w-sm gap-2">
+            <span class="label-text font-medium">Nombre</span>
+            <input type="text" name="nombre" placeholder="Nombre" class="input input-bordered w-full mb-1" [(ngModel)]="product.nombre" required/>
+            
+            <span class="label-text font-medium">Descripcion</span>
+            <input type="text" name="descripcion" placeholder="Descripcion" class="input input-bordered w-full mb-1" [(ngModel)]="product.descripcion" required/>
+            
+            <span class="label-text font-medium">Precio</span>
+            <input type="number" name="precio" placeholder="Precio de venta" class="input input-bordered w-full mb-1" [(ngModel)]="product.precio" required/>
+            
+            <span class="label-text font-medium">Url de la imagen</span>
+            <input type="text" name="imagenUrl" placeholder="imagen" class="input input-bordered w-full mb-1" [(ngModel)]="product.imagenUrl" required/>
+
+            <span class="label-text font-medium">Cantidad</span>
+            <input type="number" name="cantidad" placeholder="cantidad" class="input input-bordered w-full mb-1" [(ngModel)]="product.cantidad" required/>
+         </div>
+      </div>
+   </form>
+</div>
