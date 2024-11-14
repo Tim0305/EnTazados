@@ -32,6 +32,7 @@ export class CatalogListComponent {
   addToCart(product: Product) {
     // Verificar si el usuario esta loggeado
     if (this.usuarioService.getRol() == 2) {
+      alert('Producto agregado al carrito');
       this.cartService.addToCart(product);
       console.log(this.cartService.getItems());
     } else this.router.navigate(['/log-in']);

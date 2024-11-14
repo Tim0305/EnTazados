@@ -28,8 +28,15 @@ public class UsuarioController {
         return ResponseEntity.created(url).body(datosRespuestaUsuario);
     }
 
-    @GetMapping
-    public ResponseEntity<DatosRespuestaUsuario> getUsuario(@RequestBody DatosInicioSesionUsuario datosInicioSesionUsuario) {
-        return ResponseEntity.ok(usuarioService.obtenerUsuarioCredenciales(datosInicioSesionUsuario));
+
+    @PostMapping("/login")
+    public ResponseEntity<DatosRespuestaUsuario> loginUsuario(@RequestBody DatosInicioSesionUsuario datosInicioSesionUsuario) {
+        DatosRespuestaUsuario usuarioAutenticado = usuarioService.obtenerUsuarioCredenciales(datosInicioSesionUsuario);
+
+        if (usuarioAutenticado != null) {
+            return ResponseEntity.ok(usuarioAutenticado);
+        } else {
+            return ResponseEntity.status(401).build(); // Retornar código 401 si la autenticación falla
+        }
     }
 }

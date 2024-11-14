@@ -1,19 +1,38 @@
 <main class="h-screen flex items-center justify-center b">
-   <div class="bg-base-100 w-full max-w-md p-2 shadow-lg rounded-lg">
-      <h2 class="text-2xl font-bold text-center">Iniciar sesión</h2>
-      <div class="p-8 space-y-4">
-         <label class="input input-bordered flex items-center gap-2">
-            <input type="text" class="grow" placeholder="Correo" />
-         </label>
+  <div class="bg-base-100 w-full max-w-md p-2 shadow-lg rounded-lg">
+    <h2 class="text-2xl font-bold text-center">Iniciar sesión</h2>
+    <div>
+      <form class="p-8 space-y-4">
+        <label class="input input-bordered flex items-center gap-2">
+          <input
+            type="text"
+            class="grow"
+            placeholder="Correo"
+            name="correo"
+            [(ngModel)]="datosInicioSesion.correo"
+            required
+          />
+        </label>
 
-         <label class="input input-bordered flex items-center gap-2">
-            <input type="password" class="grow" placeholder="Contraseña" />
-         </label>
-
-      </div>
-      <div class="pt-2 space-y-2 p-8">
-         <button class="btn btn-neutral w-full">Iniciar sesión</button>
-         <button (click)="onClickRegistrar()" class="btn btn-ghost w-full">Registrarse</button>
-      </div>
-   </div>
+        <label class="input input-bordered flex items-center gap-2">
+          <input
+            type="password"
+            class="grow"
+            placeholder="Contraseña"
+            name="password"
+            [(ngModel)]="datosInicioSesion.password"
+            required
+          />
+        </label>
+      </form>
+    </div>
+    <div class="pt-2 space-y-2 p-8">
+      <button (click)="onClickLogIn()" class="btn btn-neutral w-full">
+        Iniciar sesión
+      </button>
+      <button (click)="onClickRegistrar()" class="btn btn-ghost w-full">
+        Registrarse
+      </button>
+    </div>
+  </div>
 </main>
