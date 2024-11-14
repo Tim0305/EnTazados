@@ -7,34 +7,33 @@ import { UsuarioService } from '../../services/UsuarioService/usuario.service';
 import { Router } from '@angular/router';
 
 @Component({
-   selector: 'app-catalog-list',
-   standalone: true,
-   imports: [CommonModule],
-   templateUrl: './catalog-list.component.html',
-   styleUrl: './catalog-list.component.css',
+  selector: 'app-catalog-list',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './catalog-list.component.html',
+  styleUrl: './catalog-list.component.css',
 })
 export class CatalogListComponent {
-   products: Product[] = [];
+  products: Product[] = [];
 
-   constructor(
-      private cartService: CartService,
-      private productService: ProductService,
-      private usuarioService: UsuarioService,
-      private router: Router
+  constructor(
+    private cartService: CartService,
+    private productService: ProductService,
+    private usuarioService: UsuarioService,
+    private router: Router
+  ) {}
 
-   ) {
-      this.productService.fetchProducts();
-      this.products = this.productService.getProducts();
-      console.log(this.products);
-   }
+  ngOnInit(): void {
+    // Llama al servicio para obtener los productos y suscríbete al resultado
+    this.productService.fetchProducts();
+    this.products = this.productService.getProducts();
+  }
 
-   addToCart(product: Product) {
-      // Verificar si el usuario esta loggeado
-      if (this.usuarioService.getRol() == 2) {
-         this.cartService.addToCart(product);
-         console.log(this.cartService.getItems());
-      }
-      else
-         this.router.navigate(['/log-in']);
-   }
+  addToCart(product: Product) {
+    // Verificar si el usuario esta loggeado
+    if (this.usuarioService.getRol() == 2) {
+      this.cartService.addToCart(product);
+      console.log(this.cartService.getItems());
+    } else this.router.navigate(['/log-in']);
+  }
 }
