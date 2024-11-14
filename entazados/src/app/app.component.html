@@ -60,7 +60,7 @@
               >Preguntas Frecuentes</a
             >
 
-            <div *ngIf="isLoggedIn()">
+            <div *ngIf="isUser()">
               <a class="btn btn-ghost text-base" routerLink="/pedidos">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +80,7 @@
               >
             </div>
 
-            <div *ngIf="isLoggedIn()">
+            <div *ngIf="isUser()">
               <a class="btn btn-ghost text-base" routerLink="/carrito">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
