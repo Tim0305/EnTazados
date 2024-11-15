@@ -61,6 +61,14 @@ public class Taza {
             existe = datosActualizarTaza.existe();
     }
 
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+        if (cantidad <= 0)
+            existe = false;
+        else
+            existe = true;
+    }
+
     public void desactivarTaza() {
         existe = false;
     }

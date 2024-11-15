@@ -26,7 +26,7 @@ export class CatalogListComponent {
   ngOnInit(): void {
     // Llama al servicio para obtener los productos y suscríbete al resultado
     this.productService.fetchProducts();
-    this.products = this.productService.getProducts();
+    this.products = this.productService.getValidProducts();
   }
 
   addToCart(product: Product) {

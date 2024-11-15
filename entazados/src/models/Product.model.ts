@@ -5,4 +5,5 @@ export interface Product {
   precio: number;
   imagenUrl: string;
   cantidad: number;
+  existe: boolean;
 }
