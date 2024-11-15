@@ -1,0 +1,1 @@
+ALTER TABLE usuarios ADD COLUMN respuesta_pregunta VARCHAR(30) NOT NULL;

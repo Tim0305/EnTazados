@@ -26,6 +26,7 @@ public class Usuario {
     private String direccion;
     private String password;
     private Integer rol;
+    private String respuestaPregunta;
 
     @OneToMany(mappedBy = "usuario")
     private List<Compra> usuarioCompras;
@@ -36,6 +37,7 @@ public class Usuario {
         correo = datosRegistroUsuario.correo();
         direccion = datosRegistroUsuario.direccion();
         password = datosRegistroUsuario.password();
+        respuestaPregunta = datosRegistroUsuario.respuestaPregunta();
 
         // 1 -> administrador
         // 2 -> usuario normal

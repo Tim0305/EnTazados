@@ -5,6 +5,7 @@ public record DatosRegistroUsuario(
         String apellidos,
         String correo,
         String direccion,
-        String password
+        String password,
+        String respuestaPregunta
 ) {
 }
