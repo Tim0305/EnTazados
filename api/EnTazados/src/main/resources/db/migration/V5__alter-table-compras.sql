@@ -1,0 +1,1 @@
+ALTER TABLE compras ADD COLUMN precio_actual_taza double not null;

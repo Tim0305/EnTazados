@@ -27,10 +27,10 @@ public class TazaService {
                 .collect(Collectors.toList());
     }
 
-    public DatosRespuestaTaza obtenerTazaPorId(Integer id) {
+    public Taza obtenerTazaPorId(Integer id) {
         Optional<Taza> tazaOptional = tazaRepository.findById(id);
         if (tazaOptional.isPresent())
-            return new DatosRespuestaTaza(tazaOptional.get());
+            return tazaOptional.get();
         else return null;
     }
 

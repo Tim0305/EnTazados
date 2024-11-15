@@ -1,10 +1,13 @@
-package com.entazados.api.domain.cliente;
+package com.entazados.api.domain.usuario;
 
+import com.entazados.api.domain.compras.Compra;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Table(name = "usuarios")
 @Entity(name = "Usuario")
@@ -15,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_Cliente")
+    @Column(name = "ID_Usuario")
     private Integer id;
     private String nombre;
     private String apellidos;
@@ -23,6 +26,9 @@ public class Usuario {
     private String direccion;
     private String password;
     private Integer rol;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Compra> usuarioCompras;
 
     public Usuario(DatosRegistroUsuario datosRegistroUsuario) {
         nombre = datosRegistroUsuario.nombre();

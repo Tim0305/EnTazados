@@ -1,4 +1,4 @@
-package com.entazados.api.domain.cliente;
+package com.entazados.api.domain.usuario;
 
 public record DatosRespuestaUsuario(
         Integer id,

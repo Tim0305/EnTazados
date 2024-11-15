@@ -1,9 +1,9 @@
 package com.entazados.api.service;
 
-import com.entazados.api.domain.cliente.DatosInicioSesionUsuario;
-import com.entazados.api.domain.cliente.DatosRespuestaUsuario;
-import com.entazados.api.domain.cliente.Usuario;
-import com.entazados.api.domain.cliente.UsuarioRepository;
+import com.entazados.api.domain.usuario.DatosInicioSesionUsuario;
+import com.entazados.api.domain.usuario.DatosRespuestaUsuario;
+import com.entazados.api.domain.usuario.Usuario;
+import com.entazados.api.domain.usuario.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +19,13 @@ public class UsuarioService {
 
         if (optionalUsuario.isPresent())
             return new DatosRespuestaUsuario(optionalUsuario.get());
+        return null;
+    }
+
+    public Usuario obtenerUsuarioPorId(int id) {
+        Optional<Usuario> optionalUsuario = usuarioRepository.findById(id);
+        if (optionalUsuario.isPresent())
+            return optionalUsuario.get();
         return null;
     }
 }

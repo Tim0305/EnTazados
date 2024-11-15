@@ -1,6 +1,6 @@
 package com.entazados.api.controller;
 
-import com.entazados.api.domain.cliente.*;
+import com.entazados.api.domain.usuario.*;
 import com.entazados.api.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -1,16 +1,17 @@
 package com.entazados.api.domain.taza;
 
+import com.entazados.api.domain.compras.Compra;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.List;
 
 @Table(name = "tazas")
 @Entity(name = "Taza")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 @EqualsAndHashCode(of = "id")
 public class Taza {
     @Id
@@ -24,6 +25,9 @@ public class Taza {
     private String imagenUrl;
     private Integer cantidad;
     private Boolean existe;
+
+    @OneToMany(mappedBy = "taza")
+    private List<Compra> tazaCompras;
 
     public Taza(DatosRegistroTaza datosRegistroTaza) {
         nombre = datosRegistroTaza.nombre();
