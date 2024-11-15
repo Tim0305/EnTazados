@@ -6,4 +6,5 @@ export interface Usuario {
    direccion: string;
    rol: number;
    password: string;
+   respuesta_pregunta: string;
 }
