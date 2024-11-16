@@ -18,14 +18,12 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @PostMapping
-    public ResponseEntity<DatosRespuestaUsuario> registrarUsuario(@RequestBody DatosRegistroUsuario datosRegistroUsuario, UriComponentsBuilder uriComponentsBuilder) {
+    @PostMapping("/registro")
+    public ResponseEntity<DatosRespuestaUsuario> registrarUsuario(@RequestBody DatosRegistroUsuario datosRegistroUsuario) {
         Usuario usuario = usuarioRepository.save(new Usuario(datosRegistroUsuario));
         DatosRespuestaUsuario datosRespuestaUsuario = new DatosRespuestaUsuario(usuario);
 
-        // Retornar en donde se encuentra el nuevo recurso "Location"
-        URI url = uriComponentsBuilder.path("/usuarios/{id}").buildAndExpand(usuario.getId()).toUri();
-        return ResponseEntity.created(url).body(datosRespuestaUsuario);
+        return ResponseEntity.ok(datosRespuestaUsuario);
     }
 
 
@@ -37,6 +35,23 @@ public class UsuarioController {
             return ResponseEntity.ok(usuarioAutenticado);
         } else {
             return ResponseEntity.status(401).build(); // Retornar código 401 si la autenticación falla
+        }
+    }
+
+    @GetMapping("/verificar-pregunta")
+    public ResponseEntity<Integer> verificarPreguntaRecuperarPassword(@RequestParam String correo, @RequestParam String respuestaPregunta) {
+        Integer idUsuario = usuarioService.obtenerIdUsuarioPreguntaRecuperarPassword(correo, respuestaPregunta);
+        return ResponseEntity.ok(idUsuario);
+    }
+
+    @PutMapping("/restablecer-password")
+    public ResponseEntity<DatosRespuestaUsuario> restablecerPassword(@RequestBody DatosRestablecerPassword datosRestablecerPassword) {
+        DatosRespuestaUsuario usuarioActualizado = usuarioService.restablecerPassword(datosRestablecerPassword);
+
+        if (usuarioActualizado != null) {
+            return ResponseEntity.ok(usuarioActualizado);
+        } else {
+            return ResponseEntity.status(400).build(); // Retornar código 400 si no se encuentra el usuario
         }
     }
 }
