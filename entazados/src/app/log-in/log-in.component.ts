@@ -30,6 +30,7 @@ export class LogInComponent {
       private usuarioService: UsuarioService
    ) { }
 
+   //Fucion para abrir el modal (pop up)
    openModal() {
       const modal: any = document.getElementById('my_modal_1');
       if (modal) {
@@ -37,6 +38,7 @@ export class LogInComponent {
       }
    }
 
+   //Fucion para cerrar el modal (pop up)
    closeModal() {
       const modal: any = document.getElementById('my_modal_1');
       if (modal) {
@@ -44,8 +46,9 @@ export class LogInComponent {
       }
    }
 
+   //Funcion para revisar que el correo y la respuesta coincidan (sin consultar a la api)
    checkAnswer() {
-      // Simular verificación de respuesta
+      // Simulacion de la  verificaciion de los datos
       const correoCorrecto = "ejemplo@gmail.com";
       const respuestaCorrecta = "perro panzon";
 
@@ -53,13 +56,14 @@ export class LogInComponent {
          this.datosInicioSesion.correo === correoCorrecto &&
          this.datosInicioSesion.respuesta_pregunta.toLowerCase() === respuestaCorrecta.toLowerCase()
       ) {
-         this.respuestaCorrecta = true; // Cambia al estado de nueva contraseña
+         this.respuestaCorrecta = true;
       } else {
          alert('Respuesta incorrecta.');
          this.respuestaCorrecta = false;
       }
    }
 
+   //Actualizar la contraseña (no hace nada kakakjakj)
    updatePassword() {
       if (!this.nuevaPassword) {
          alert('Por favor, ingresa una nueva contraseña.');
@@ -74,11 +78,9 @@ export class LogInComponent {
          alert('Por favor, completa todos los campos.');
          return;
       }
-      // Realizar una solicitud POST con el objeto `product` al API
       this.http.post(this.apiURL, this.datosInicioSesion).subscribe(
          (registeredUser: any) => {
             alert('Hola, ' + registeredUser.nombre);
-            // Almacenar la info del usuario sin la contrasenia
             const user: Usuario = {
                id: registeredUser.id,
                nombre: registeredUser.nombre,
@@ -100,7 +102,6 @@ export class LogInComponent {
          }
       );
 
-      // Aquí puedes limpiar el formulario o mostrar un mensaje de éxito si es necesario
       this.datosInicioSesion = {
          correo: '',
          password: '',
