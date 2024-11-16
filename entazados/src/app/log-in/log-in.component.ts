@@ -21,6 +21,9 @@ export class LogInComponent {
 
    private apiURL = 'http://localhost:8080/usuarios/login';
 
+   nuevaPassword: string = ''; // Para la nueva contraseña
+   respuestaCorrecta: boolean = false; // Estado para el contenido del modal
+
    constructor(
       private router: Router,
       private http: HttpClient,
@@ -33,12 +36,37 @@ export class LogInComponent {
          modal.showModal();
       }
    }
-   
+
    closeModal() {
       const modal: any = document.getElementById('my_modal_1');
       if (modal) {
          modal.close();
       }
+   }
+
+   checkAnswer() {
+      // Simular verificación de respuesta
+      const correoCorrecto = "ejemplo@gmail.com";
+      const respuestaCorrecta = "perro panzon";
+
+      if (
+         this.datosInicioSesion.correo === correoCorrecto &&
+         this.datosInicioSesion.respuesta_pregunta.toLowerCase() === respuestaCorrecta.toLowerCase()
+      ) {
+         this.respuestaCorrecta = true; // Cambia al estado de nueva contraseña
+      } else {
+         alert('Respuesta incorrecta.');
+         this.respuestaCorrecta = false;
+      }
+   }
+
+   updatePassword() {
+      if (!this.nuevaPassword) {
+         alert('Por favor, ingresa una nueva contraseña.');
+         return;
+      }
+      alert('Contraseña actualizada exitosamente.');
+      this.closeModal();
    }
 
    onClickLogIn() {
@@ -59,7 +87,7 @@ export class LogInComponent {
                direccion: registeredUser.direccion,
                rol: registeredUser.rol,
                password: '',
-               respuesta_pregunta: '',
+               respuestaPregunta: '',
             };
 
             this.usuarioService.setUsuario(user);

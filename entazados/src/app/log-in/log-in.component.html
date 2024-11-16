@@ -1,5 +1,5 @@
 <main class="h-screen flex items-center justify-center">
-   <div class="bg-base-100 w-full max-w-md p-2 shadow-lg rounded-lg">
+   <div class="bg-base-100 w-full max-w-md shadow-lg rounded-lg">
       <h2 class="text-2xl font-bold text-center mb-4">Iniciar sesión</h2>
       <div>
          <form class="px-8 py-2">
@@ -12,18 +12,20 @@
                <input type="password" class="grow" placeholder="Contraseña" name="password"
                   [(ngModel)]="datosInicioSesion.password" required />
             </label>
-
-            <button type="button" (click)="openModal()" class="link">¿Olvidaste tu contraseña?</button>
          </form>
       </div>
 
-      <div class="px-8 py-2">
+      <div class="px-8 py-2 flex flex-col items-center justify-center">
          <button (click)="onClickLogIn()" class="btn btn-neutral w-full my-2">
             Iniciar sesión
          </button>
 
-         <button (click)="onClickRegistrar()" class="btn btn-neutral w-full mb-5">
+         <button (click)="onClickRegistrar()" class="btn btn-neutral w-full">
             Registrarse
+         </button>
+
+         <button type="button" (click)="openModal()" class="link link-primary text-center my-6">
+            ¿Olvidaste tu contraseña?
          </button>
       </div>
    </div>
@@ -31,17 +33,39 @@
 
 <!-- Modal con el formulario para nuevo cliente -->
 <dialog id="my_modal_1" class="modal">
-   <div class="modal-box bg-base-100 w-full max-w-md p-2 shadow-lg rounded-lg">
-      <h2 class="text-2xl font-bold text-center mt-6">Recuperar contraseña</h2>
-      <div class="p-6 space-y-2">
-         <p>¿Cuál es el nombre de tu mascota?</p>
-         <label class="input input-bordered flex items-center gap-2">
-            <input type="text" class="grow" name="respuesta_pregunta" [(ngModel)]="datosInicioSesion.respuesta_pregunta"/>
-         </label>
-         <div class="pt-4 space-y-2">
-            <button class="btn btn-neutral w-full">Enviar</button>
-            <button (click)="closeModal()" class="btn btn-neutral w-full">Cerrar</button>
-         </div>
+   <div class="modal-box bg-base-100 w-full max-w-md shadow-lg rounded-lg">
+      <h2 class="text-2xl font-bold text-center mb-2">Recuperar contraseña</h2>
+      <div class="px-2 py-2">
+
+         <!-- Estado inicial: Preguntar correo y respuesta -->
+         <ng-container *ngIf="!respuestaCorrecta">
+            <p>Ingresa tu correo</p>
+            <label class="input input-bordered flex items-center mt-2 mb-2">
+               <input type="text" name="correo" [(ngModel)]="datosInicioSesion.correo" required />
+            </label>
+
+            <p>¿Cuál es el nombre de tu mascota?</p>
+            <label class="input input-bordered flex items-center mt-2 mb-2">
+               <input type="text" name="respuesta_pregunta" [(ngModel)]="datosInicioSesion.respuesta_pregunta"
+                  required />
+            </label>
+            <div class="pt-4 space-y-2">
+               <button (click)="checkAnswer()" class="btn btn-neutral w-full">Enviar</button>
+               <button (click)="closeModal()" class="btn btn-neutral w-full">Cerrar</button>
+            </div>
+         </ng-container>
+
+         <!-- Estado secundario: Cambiar contraseña -->
+         <ng-container *ngIf="respuestaCorrecta">
+            <p>Ingresa tu nueva contraseña</p>
+            <label class="input input-bordered flex items-center mt-2 mb-2">
+               <input type="password" name="nueva_password" [(ngModel)]="nuevaPassword" required />
+            </label>
+            <div class="pt-4 space-y-2">
+               <button (click)="updatePassword()" class="btn btn-neutral w-full">Actualizar</button>
+               <button (click)="closeModal()" class="btn btn-neutral w-full">Cerrar</button>
+            </div>
+         </ng-container>
       </div>
    </div>
 </dialog>

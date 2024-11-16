@@ -24,7 +24,7 @@ export class SignUpComponent {
       direccion: '',
       rol: 0,
       password: '',
-      respuesta_pregunta: ''
+      respuestaPregunta: ''
    };
 
    constructor(
@@ -34,7 +34,7 @@ export class SignUpComponent {
    ) { }
 
    onClickAgregarUsuario() {
-      if (!this.usuario.correo || !this.usuario.password || !this.usuario.nombre || !this.usuario.apellidos || !this.usuario.respuesta_pregunta) {
+      if (!this.usuario.correo || !this.usuario.password || !this.usuario.nombre || !this.usuario.apellidos || !this.usuario.respuestaPregunta) {
          alert('Por favor, completa todos los campos.');
          return;
       }
@@ -51,7 +51,7 @@ export class SignUpComponent {
                direccion: registeredUser.direccion,
                rol: registeredUser.rol,
                password: '',
-               respuesta_pregunta: registeredUser.respuesta_pregunta,
+               respuestaPregunta: registeredUser.respuesta_pregunta,
             };
 
             this.usuarioService.setUsuario(user);
@@ -73,7 +73,7 @@ export class SignUpComponent {
          direccion: '',
          rol: 0,
          password: '',
-         respuesta_pregunta: '',
+         respuestaPregunta: '',
       };
    }
 }
