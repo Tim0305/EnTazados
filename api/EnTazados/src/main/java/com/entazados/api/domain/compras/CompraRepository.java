@@ -11,4 +11,7 @@ public interface CompraRepository extends JpaRepository<Compra, Integer> {
 
     @Query("SELECT c FROM Compra c ORDER BY c.idPedido")
     List<Compra> findAllOrderByIdPedido();
+
+    @Query("SELECT c FROM Compra c WHERE c.usuario.id = :idUsuario ORDER BY c.idPedido")
+    List<Compra> findAllByUsuarioIdOrderByIdPedido(Integer idUsuario);
 }

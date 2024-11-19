@@ -33,4 +33,11 @@ public class CompraController {
 
         return ResponseEntity.ok(pedidos.stream().map(DatosRespuestaPedidos::new).toList());
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<List<DatosRespuestaPedidos>> getPedidosUsuario(@PathVariable Integer id) {
+        List<Pedido> pedidos = pedidoService.getPedidosUsuario(id);
+
+        return ResponseEntity.ok(pedidos.stream().map(DatosRespuestaPedidos::new).toList());
+    }
 }

@@ -20,7 +20,19 @@ public class PedidoService {
         // Recuperar todas las compras ordenadas por idPedido
         List<Compra> compras = compraRepository.findAllOrderByIdPedido();
 
-        compras.forEach(c -> System.out.println(c.getId()));
+        // Agrupar compras por idPedido
+        Map<Integer, List<Compra>> comprasAgrupadas = compras.stream()
+                .collect(Collectors.groupingBy(Compra::getIdPedido));
+
+        // Crear objetos Pedido a partir de las listas de compras agrupadas
+        return comprasAgrupadas.values().stream()
+                .map(Pedido::new) // Constructor que acepta una lista de compras
+                .collect(Collectors.toList());
+    }
+
+    public List<Pedido> getPedidosUsuario(Integer idUsuario) {
+        // Recuperar todas las compras ordenadas por idPedido
+        List<Compra> compras = compraRepository.findAllByUsuarioIdOrderByIdPedido(idUsuario);
 
         // Agrupar compras por idPedido
         Map<Integer, List<Compra>> comprasAgrupadas = compras.stream()
