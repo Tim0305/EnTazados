@@ -20,10 +20,7 @@ public class UsuarioController {
 
     @PostMapping("/registro")
     public ResponseEntity<DatosRespuestaUsuario> registrarUsuario(@RequestBody DatosRegistroUsuario datosRegistroUsuario) {
-        Usuario usuario = usuarioRepository.save(new Usuario(datosRegistroUsuario));
-        DatosRespuestaUsuario datosRespuestaUsuario = new DatosRespuestaUsuario(usuario);
-
-        return ResponseEntity.ok(datosRespuestaUsuario);
+        return ResponseEntity.ok(usuarioService.registrarUsuario(datosRegistroUsuario));
     }
 
 

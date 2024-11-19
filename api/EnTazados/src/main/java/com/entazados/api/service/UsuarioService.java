@@ -2,7 +2,9 @@ package com.entazados.api.service;
 
 import com.entazados.api.domain.usuario.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
 
 import java.util.Optional;
 
@@ -11,12 +13,27 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    // rounds -> 10
+    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(10);
+
+    public DatosRespuestaUsuario registrarUsuario(DatosRegistroUsuario datosRegistroUsuario) {
+        Usuario usuario = new Usuario(datosRegistroUsuario);
+        usuario.setPassword(bCryptPasswordEncoder.encode(usuario.getPassword()));
+        return new DatosRespuestaUsuario(usuarioRepository.save(usuario));
+    }
+
     public DatosRespuestaUsuario obtenerUsuarioCredenciales(DatosInicioSesionUsuario datosInicioSesionUsuario) {
-        Optional<Usuario> optionalUsuario = usuarioRepository.findByCorreoAndPassword(datosInicioSesionUsuario.correo(), datosInicioSesionUsuario.password());
+        Optional<Usuario> optionalUsuario = usuarioRepository.findByCorreo(datosInicioSesionUsuario.correo());
 
         if (optionalUsuario.isPresent())
-            return new DatosRespuestaUsuario(optionalUsuario.get());
-        return null;
+            if (bCryptPasswordEncoder.matches(datosInicioSesionUsuario.password(), optionalUsuario.get().getPassword())) {
+                System.out.println(datosInicioSesionUsuario.password());
+                return new DatosRespuestaUsuario(optionalUsuario.get());
+            }
+            else
+                return null;
+        else
+            return null;
     }
 
     public Usuario obtenerUsuarioPorId(int id) {
@@ -41,7 +58,7 @@ public class UsuarioService {
         Usuario usuario = obtenerUsuarioPorId(datosRestablecerPassword.idUsuario());
 
         if (usuario != null) {
-            usuario.setPassword(datosRestablecerPassword.newPassword());
+            usuario.setPassword(bCryptPasswordEncoder.encode(datosRestablecerPassword.newPassword()));
             usuarioRepository.save(usuario);
             return new DatosRespuestaUsuario(usuario);
         }
