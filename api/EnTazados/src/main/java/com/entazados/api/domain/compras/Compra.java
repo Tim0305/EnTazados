@@ -24,6 +24,8 @@ public class Compra {
     private Integer idPedido;
     private LocalDateTime fechaCompra;
     private Double precioActualTaza;
+
+    private Boolean activo;
     @ManyToOne
     @JoinColumn(name = "ID_Usuario", nullable = false)
     private Usuario usuario;

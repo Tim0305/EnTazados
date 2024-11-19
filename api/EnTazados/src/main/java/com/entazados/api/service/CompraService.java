@@ -3,6 +3,7 @@ package com.entazados.api.service;
 import com.entazados.api.domain.compras.Compra;
 import com.entazados.api.domain.compras.CompraRepository;
 import com.entazados.api.domain.compras.DatosRegistroCompra;
+import com.entazados.api.domain.compras.DatosRespuestaPedidos;
 import com.entazados.api.domain.taza.Taza;
 import com.entazados.api.domain.taza.TazaRepository;
 import com.entazados.api.domain.usuario.Usuario;
@@ -53,6 +54,7 @@ public class CompraService {
                 compra.setFechaCompra(ldt);
                 compra.setIdPedido(idPedido);
                 compra.setPrecioActualTaza(taza.getPrecio());
+                compra.setActivo(true);
 
                 taza.setCantidad(taza.getCantidad() - 1);
 
@@ -70,5 +72,4 @@ public class CompraService {
             return optionalCompra.get();
         return null;
     }
-
 }
