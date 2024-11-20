@@ -91,7 +91,11 @@ export class InventarioComponent {
    }
 
    onClickEditar() {
-      alert('Producto editado');
+      alert('Datos actualizados correctamente');
+   }
+
+   onClickEliminar(selectedProduct: Product) {
+      alert(`Estás a punto de eliminar la taza: ${selectedProduct.nombre}`);
    }
 
 }
