@@ -60,10 +60,29 @@ export class InventarioComponent {
     };
   }
 
+  openModalEditar(selectedProduct: Product) {
+    const modal: any = document.getElementById('my_modal_2');
+    if (modal) {
+      modal.showModal();
+      this.product = { ...selectedProduct };
+    }
+  }
+
+  closeModalEditar() {
+    const modal: any = document.getElementById('my_modal_2');
+    if (modal) {
+      modal.close();
+    }
+  }
+
   ngOnInit(): void {
     // Llama al servicio para obtener los productos y suscríbete al resultado
     this.productService.fetchProducts();
     this.products = this.productService.getProducts();
+  }
+
+  onClickEditar() {
+    alert('Datos actualizados correctamente');
   }
 
   onClickAgregar() {
