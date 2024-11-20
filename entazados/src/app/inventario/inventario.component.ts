@@ -32,7 +32,6 @@ export class InventarioComponent {
 
    constructor(private productService: ProductService, private http: HttpClient) { }
 
-   //Fucion para abrir el modal (pop up)
    openModal() {
       const modal: any = document.getElementById('my_modal_1');
       if (modal) {
@@ -40,9 +39,23 @@ export class InventarioComponent {
       }
    }
 
-   //Fucion para cerrar el modal (pop up)
    closeModal() {
       const modal: any = document.getElementById('my_modal_1');
+      if (modal) {
+         modal.close();
+      }
+   }
+
+   openModalEditar(selectedProduct: Product) {
+      const modal: any = document.getElementById('my_modal_2');
+      if (modal) {
+         modal.showModal();
+         this.product = { ...selectedProduct };
+      }
+   }
+
+   closeModalEditar() {
+      const modal: any = document.getElementById('my_modal_2');
       if (modal) {
          modal.close();
       }
@@ -75,6 +88,10 @@ export class InventarioComponent {
             alert('Error al registrar el producto');
          }
       );
+   }
+
+   onClickEditar() {
+      alert('Producto editado');
    }
 
 }

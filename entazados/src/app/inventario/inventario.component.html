@@ -14,6 +14,7 @@
                <th scope="col" class="text-sm font-semibold w-1/6">Nombre</th>
                <th scope="col" class="text-sm font-semibold w-1/6">Descripción</th>
                <th scope="col" class="text-sm font-semibold w-1/12">Precio</th>
+               <th scope="col" class="text-sm font-semibold w-1/12">Cantidad</th>
                <th scope="col" class="text-sm font-semibold w-1/12"></th>
             </tr>
          </thead>
@@ -26,9 +27,10 @@
                <td>{{ product.nombre }}</td>
                <td>{{ product.descripcion }}</td>
                <td>${{ product.precio }}</td>
+               <td>{{ product.cantidad }}</td>
                <td>
                   <div class="flex flex-row">
-                     <button class="btn btn-warning btn-block mr-2 flex-1">Editar</button>
+                     <button class="btn btn-warning btn-block mr-2 flex-1" (click)="openModalEditar(product)">Editar</button>
                      <button class="btn btn-error btn-block flex-1">Eliminar</button>
                   </div>
                </td>
@@ -38,7 +40,7 @@
    </div>
 </div>
 
-<!-- Modal con el formulario para nuevo cliente -->
+<!-- Modal para crear taza nueva -->
 <dialog id="my_modal_1" class="modal">
    <div class="modal-box bg-base-100 w-full max-w-md shadow-lg rounded-lg">
       <h2 class="text-2xl font-bold text-center mb-2">Agregar Taza</h2>
@@ -62,6 +64,36 @@
             <div class="pt-4 space-y-2">
                <button (click)="onClickAgregar()" class="btn btn-neutral w-full">Agregar</button>
                <button (click)="closeModal()" class="btn btn-neutral w-full">Cancelar</button>
+             </div>
+         </div>
+      </div>
+   </div>
+</dialog>
+
+<!-- Modal para ediitar las tazas -->
+<dialog id="my_modal_2" class="modal">
+   <div class="modal-box bg-base-100 w-full max-w-md shadow-lg rounded-lg">
+      <h2 class="text-2xl font-bold text-center mb-2">Editar Taza</h2>
+      <div>
+         <div class="flex flex-col flex-1 max-w-sm gap-1">
+            <span class="label-text font-medium">Nombre</span>
+            <input type="text" name="nombre" placeholder="Nombre" class="input input-bordered w-full mb-1" [(ngModel)]="product.nombre" required/>
+            
+            <span class="label-text font-medium">Descripcion</span>
+            <input type="text" name="descripcion" placeholder="Descripcion" class="input input-bordered w-full mb-1" [(ngModel)]="product.descripcion" required/>
+            
+            <span class="label-text font-medium">Precio</span>
+            <input type="number" name="precio" placeholder="Precio de venta" class="input input-bordered w-full mb-1" [(ngModel)]="product.precio" required/>
+            
+            <span class="label-text font-medium">Url de la imagen</span>
+            <input type="text" name="imagenUrl" placeholder="imagen" class="input input-bordered w-full mb-1" [(ngModel)]="product.imagenUrl" required/>
+
+            <span class="label-text font-medium">Cantidad</span>
+            <input type="number" name="cantidad" placeholder="cantidad" class="input input-bordered w-full mb-1" [(ngModel)]="product.cantidad" required/>
+
+            <div class="pt-4 space-y-2">
+               <button (click)="onClickEditar()" class="btn btn-neutral w-full">Guardar cambios</button>
+               <button (click)="closeModalEditar()" class="btn btn-neutral w-full">Cancelar</button>
              </div>
          </div>
       </div>
