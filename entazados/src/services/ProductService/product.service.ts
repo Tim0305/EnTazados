@@ -32,6 +32,12 @@ export class ProductService {
     );
   }
 
+  updateProduct(newProduct: Product) {
+    this.products = this.products.map((product) =>
+      product.id === newProduct.id ? newProduct : product
+    );
+  }
+
   // Método para devolver los productos almacenados localmente
   getProducts() {
     return this.products;

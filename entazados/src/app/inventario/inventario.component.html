@@ -4,7 +4,7 @@
       Inventario
     </h1>
     <div class="ml-auto py-4 col-start-3">
-      <button class="btn btn-info" (click)="openModal()">
+      <button class="btn btn-info" (click)="openModalAgregarTaza()">
         Agregar producto
       </button>
     </div>
@@ -35,7 +35,10 @@
           <td>${{ product.precio }}</td>
           <td>
             <div *ngIf="product.existe" class="flex flex-row">
-              <button class="btn btn-warning btn-block mr-2 flex-1">
+              <button
+                class="btn btn-warning btn-block mr-2 flex-1"
+                (click)="openModalEditarTaza(product)"
+              >
                 Editar
               </button>
               <button
@@ -120,7 +123,10 @@
           <button (click)="onClickAgregar()" class="btn btn-neutral w-full">
             Agregar
           </button>
-          <button (click)="closeModal()" class="btn btn-neutral w-full">
+          <button
+            (click)="closeModalAgregarTaza()"
+            class="btn btn-neutral w-full"
+          >
             Cancelar
           </button>
         </div>
@@ -189,7 +195,10 @@
           <button (click)="onClickEditar()" class="btn btn-neutral w-full">
             Guardar cambios
           </button>
-          <button (click)="closeModalEditar()" class="btn btn-neutral w-full">
+          <button
+            (click)="closeModalEditarTaza()"
+            class="btn btn-neutral w-full"
+          >
             Cancelar
           </button>
         </div>

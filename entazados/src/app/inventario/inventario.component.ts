@@ -34,7 +34,7 @@ export class InventarioComponent {
   ) {}
 
   //Fucion para abrir el modal (pop up)
-  openModal() {
+  openModalAgregarTaza() {
     const modal: any = document.getElementById('my_modal_1');
     if (modal) {
       modal.showModal();
@@ -42,7 +42,7 @@ export class InventarioComponent {
   }
 
   //Fucion para cerrar el modal (pop up)
-  closeModal() {
+  closeModalAgregarTaza() {
     const modal: any = document.getElementById('my_modal_1');
     if (modal) {
       modal.close();
@@ -60,7 +60,7 @@ export class InventarioComponent {
     };
   }
 
-  openModalEditar(selectedProduct: Product) {
+  openModalEditarTaza(selectedProduct: Product) {
     const modal: any = document.getElementById('my_modal_2');
     if (modal) {
       modal.showModal();
@@ -68,11 +68,22 @@ export class InventarioComponent {
     }
   }
 
-  closeModalEditar() {
+  closeModalEditarTaza() {
     const modal: any = document.getElementById('my_modal_2');
     if (modal) {
       modal.close();
     }
+
+    // Limpiar los valores de los inputs
+    this.product = {
+      id: 0, // ID se asignará automáticamente en el servidor, puede mantenerse en 0 aquí
+      nombre: '',
+      descripcion: '',
+      precio: 0,
+      imagenUrl: '',
+      cantidad: 0,
+      existe: true,
+    };
   }
 
   ngOnInit(): void {
@@ -82,7 +93,19 @@ export class InventarioComponent {
   }
 
   onClickEditar() {
-    alert('Datos actualizados correctamente');
+    this.http.put(this.apiURL, this.product).subscribe(
+      () => {
+        alert('Producto modificado exitosamente');
+        // Llama al servicio para obtener los productos y suscríbete al resultado
+        this.productService.updateProduct(this.product);
+        this.products = this.productService.getProducts();
+        this.closeModalEditarTaza();
+      },
+      (error) => {
+        console.error('Error al modificar el producto:', error);
+        alert('Error al modificar el producto');
+      }
+    );
   }
 
   onClickAgregar() {
@@ -90,16 +113,10 @@ export class InventarioComponent {
     this.http.post(this.apiURL, this.product).subscribe(
       () => {
         alert('Producto registrado exitosamente');
-        this.product = {
-          id: 0, // ID se asignará automáticamente en el servidor, puede mantenerse en 0 aquí
-          nombre: '',
-          descripcion: '',
-          precio: 0,
-          imagenUrl: '',
-          cantidad: 0,
-          existe: true,
-        };
-        this.closeModal();
+        // Actualizar los productos locales
+        this.productService.addProduct(this.product);
+        this.products = this.productService.getProducts();
+        this.closeModalAgregarTaza();
       },
       (error) => {
         console.error('Error al registrar el producto:', error);
@@ -113,7 +130,8 @@ export class InventarioComponent {
     this.http.delete(this.apiURL + '/' + productId).subscribe(
       () => {
         alert('Producto eliminado exitosamente');
-        // Llama al servicio para obtener los productos y suscríbete al resultado
+
+        // Actualizar los pedidos locales
         this.productService.removeProduct(productId);
         this.products = this.productService.getProducts();
       },
@@ -134,7 +152,8 @@ export class InventarioComponent {
     this.http.put(this.apiURL, product).subscribe(
       () => {
         alert('Producto activado exitosamente');
-        // Llama al servicio para obtener los productos y suscríbete al resultado
+
+        // Actualizar los pedidos locales
         this.productService.activateProduct(productId);
         this.products = this.productService.getProducts();
       },
