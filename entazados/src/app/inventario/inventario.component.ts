@@ -1,17 +1,23 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Product } from '../../models/Product.model';
+import { ProductService } from '../../services/ProductService/product.service';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+
+
 
 @Component({
-   selector: 'app-agregar-producto',
+   selector: 'app-inventario',
    standalone: true,
-   imports: [FormsModule],
-   templateUrl: './agregar-producto.component.html',
-   styleUrls: ['./agregar-producto.component.css'],
+   imports: [CommonModule, FormsModule],
+   templateUrl: './inventario.component.html',
+   styleUrl: './inventario.component.css'
 })
-export class AgregarProductoComponent {
-   private apiURL = 'http://localhost:8080/tazas'; // URL de la API
+export class InventarioComponent {
+   products: Product[] = [];
+
+   private apiURL = 'http://localhost:8080/tazas';
 
    // Propiedades para el nuevo producto
    product: Product = {
@@ -24,14 +30,35 @@ export class AgregarProductoComponent {
       existe: true,
    };
 
-   constructor(private http: HttpClient) { }
+   constructor(private productService: ProductService, private http: HttpClient) { }
+
+   //Fucion para abrir el modal (pop up)
+   openModal() {
+      const modal: any = document.getElementById('my_modal_1');
+      if (modal) {
+         modal.showModal();
+      }
+   }
+
+   //Fucion para cerrar el modal (pop up)
+   closeModal() {
+      const modal: any = document.getElementById('my_modal_1');
+      if (modal) {
+         modal.close();
+      }
+   }
+
+   ngOnInit(): void {
+      // Llama al servicio para obtener los productos y suscríbete al resultado
+      this.productService.fetchProducts();
+      this.products = this.productService.getValidProducts();
+   }
 
    onClickAgregar() {
       // Realizar una solicitud POST con el objeto `product` al API
       this.http.post(this.apiURL, this.product).subscribe(
          () => {
             alert('Producto registrado exitosamente');
-            // Aquí puedes limpiar el formulario o mostrar un mensaje de éxito si es necesario
             this.product = {
                id: 0, // ID se asignará automáticamente en el servidor, puede mantenerse en 0 aquí
                nombre: '',
@@ -41,6 +68,7 @@ export class AgregarProductoComponent {
                cantidad: 0,
                existe: true,
             };
+            this.closeModal();
          },
          (error) => {
             console.error('Error al registrar el producto:', error);
@@ -48,4 +76,5 @@ export class AgregarProductoComponent {
          }
       );
    }
+
 }

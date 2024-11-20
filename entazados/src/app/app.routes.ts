@@ -8,7 +8,7 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { AgregarProductoComponent } from './agregar-producto/agregar-producto.component';
+import { InventarioComponent } from './inventario/inventario.component';
 
 export const routes: Routes = [
    { path: 'catalogo', component: CatalogListComponent },
@@ -20,6 +20,6 @@ export const routes: Routes = [
    { path: 'log-in', component: LogInComponent },
    { path: 'sign-up', component: SignUpComponent },
    { path: 'carrito', component: ShoppingCartComponent },
-   { path: 'agregar-producto', component: AgregarProductoComponent },
+   { path: 'inventario', component: InventarioComponent },
    { path: '', redirectTo: '/catalogo', pathMatch: 'full' }, // Redirige por defecto al catálogo
 ];
