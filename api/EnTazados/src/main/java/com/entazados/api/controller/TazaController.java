@@ -33,8 +33,8 @@ public class TazaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<DatosRespuestaTaza>> listadoTazasExsitentes() {
-        return ResponseEntity.ok(tazaService.obtenerTazasExistentes());
+    public ResponseEntity<List<DatosRespuestaTaza>> obtenerTazas() {
+        return ResponseEntity.ok(tazaService.obtenerTazas());
     }
 
     @GetMapping("/{id}")
