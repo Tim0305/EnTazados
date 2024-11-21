@@ -8,7 +8,6 @@ import { HttpClient } from '@angular/common/http';
 export class ProductService {
   private apiURL = 'http://localhost:8080/tazas'; // URL de la API
   private products: Product[] = []; // Lista local de productos
-  private validProducts: Product[] = [];
 
   constructor(private http: HttpClient) {
     // Obtener los productos cuando se inicializa el servicio
@@ -22,7 +21,21 @@ export class ProductService {
 
   // Método para eliminar un producto localmente
   removeProduct(productId: number) {
-    this.products = this.products.filter((item) => item.id !== productId);
+    this.products = this.products.map((product) =>
+      product.id === productId ? { ...product, existe: false } : product
+    );
+  }
+
+  activateProduct(productId: number) {
+    this.products = this.products.map((product) =>
+      product.id === productId ? { ...product, existe: true } : product
+    );
+  }
+
+  updateProduct(newProduct: Product) {
+    this.products = this.products.map((product) =>
+      product.id === newProduct.id ? newProduct : product
+    );
   }
 
   // Método para devolver los productos almacenados localmente
@@ -31,7 +44,7 @@ export class ProductService {
   }
 
   getValidProducts() {
-    return this.validProducts;
+    return this.products.filter((item) => item.existe && item.cantidad > 0);
   }
 
   // Obtener productos desde el backend y almacenarlos en la lista local
@@ -39,9 +52,6 @@ export class ProductService {
     this.http.get<Product[]>(this.apiURL).subscribe(
       (data) => {
         this.products = data; // Almacenar la respuesta en la lista local
-        this.validProducts = this.products.filter(
-          (item) => item.existe || item.cantidad > 0
-        );
       },
       (error) => {
         console.error('Error al obtener los productos:', error);

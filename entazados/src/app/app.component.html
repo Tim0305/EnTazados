@@ -25,18 +25,6 @@
                         <path d="M21 6l0 13" />
                      </svg>Catálogo</a>
 
-                  <a class="btn btn-ghost text-base" routerLink="/preguntas-frecuentes">
-                     <svg xmlns="http://www.w3.org/2000/svg"
-                        class="icon icon-tabler icon-tabler-message-circle-question w-6 h-6" viewBox="0 0 24 24"
-                        stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path
-                           d="M15.02 19.52c-2.341 .736 -5 .606 -7.32 -.52l-4.7 1l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c1.649 1.407 2.575 3.253 2.742 5.152" />
-                        <path d="M19 22v.01" />
-                        <path d="M19 19a2.003 2.003 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483" />
-                     </svg>Preguntas Frecuentes</a>
-
                   <div *ngIf="isUser()">
                      <a class="btn btn-ghost text-base" routerLink="/pedidos">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-receipt w-6 h-6"
@@ -63,7 +51,20 @@
                   </div>
 
                   <div *ngIf="isAdmin()">
-                     <a class="btn btn-ghost text-base" routerLink="/agregar-producto">Agregar Producto</a>
+                     <a class="btn btn-ghost text-base " routerLink="/inventario">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                           stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="1.5" class="w-6 h-6">
+                           <path d="M7 16.5l-5 -3l5 -3l5 3v5.5l-5 3z"></path>
+                           <path d="M2 13.5v5.5l5 3"></path>
+                           <path d="M7 16.545l5 -3.03"></path>
+                           <path d="M17 16.5l-5 -3l5 -3l5 3v5.5l-5 3z"></path>
+                           <path d="M12 19l5 3"></path>
+                           <path d="M17 16.5l5 -3"></path>
+                           <path d="M12 13.5v-5.5l-5 -3l5 -3l5 3v5.5"></path>
+                           <path d="M7 5.03v5.455"></path>
+                           <path d="M12 8l5 -3"></path>
+                        </svg>Inventario
+                     </a>
                   </div>
 
                   <div *ngIf="!isLoggedIn()">
@@ -110,6 +111,10 @@
                <ul>
                   <li class="link link-hover mb-2">
                      <a routerLink="/contacto">Contacto</a>
+                  </li>
+
+                  <li class="link link-hover mb-2">
+                     <a routerLink="/preguntas-frecuentes">Preguntas Frecuentes</a>
                   </li>
                </ul>
             </div>

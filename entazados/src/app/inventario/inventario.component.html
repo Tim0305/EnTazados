@@ -1,0 +1,134 @@
+<div class="px-9 py-3">
+   <div class="grid grid-cols-3 items-center">
+      <h1 class="col-span-1 col-start-2 text-3xl font-bold mb-9 text-center">
+         Inventario
+      </h1>
+      <div class="ml-auto py-4 col-start-3">
+         <button class="btn btn-info" (click)="openModalAgregarTaza()">
+            Agregar producto
+         </button>
+      </div>
+   </div>
+
+   <div class="flex flex-1 overflow-x-auto mt-4">
+      <table class="table w-full tabs-sm">
+         <thead>
+            <tr>
+               <th scope="col" class="text-sm font-semibold w-1/6">Imagen</th>
+               <th scope="col" class="text-sm font-semibold w-1/6">Nombre</th>
+               <th scope="col" class="text-sm font-semibold w-1/6">Descripción</th>
+               <th scope="col" class="text-sm font-semibold w-1/12">Precio</th>
+               <th scope="col" class="text-sm font-semibold w-1/12">Cantidad</th>
+               <th scope="col" class="text-sm font-semibold w-1/12"></th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr *ngFor="let product of products" class="hover:bg-gray-50">
+               <td>
+                  <img src="{{ product.imagenUrl }}" alt="{{ product.nombre }}"
+                     class="w-32 h-32 object-cover rounded-md" />
+               </td>
+               <td>{{ product.nombre }}</td>
+               <td>{{ product.descripcion }}</td>
+               <td>${{ product.precio }}</td>
+               <td [ngClass]="{'text-red-500 font-semibold': product.cantidad < 3}">
+                  {{ product.cantidad }}
+                </td>
+               <td>
+                  <div *ngIf="product.existe" class="flex flex-row">
+                     <button class="btn btn-warning btn-block mr-2 flex-1" (click)="openModalEditarTaza(product)">
+                        Editar
+                     </button>
+                     <button class="btn btn-error btn-block flex-1" (click)="onClickEliminar(product.id)">
+                        Eliminar
+                     </button>
+                  </div>
+                  <div *ngIf="!product.existe" class="flex flex-row">
+                     <button class="btn btn-info btn-block mr-2 flex-1" (click)="onClickActivar(product.id)">
+                        Activar
+                     </button>
+                  </div>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+</div>
+
+<!-- Modal para crear taza nueva -->
+<dialog id="my_modal_1" class="modal">
+   <div class="modal-box bg-base-100 w-full max-w-md shadow-lg rounded-lg">
+      <h2 class="text-2xl font-bold text-center mb-2">Agregar Taza</h2>
+      <div>
+         <div class="flex flex-col flex-1 max-w-sm gap-1">
+            <span class="label-text font-medium">Nombre</span>
+            <input type="text" name="nombre" placeholder="Nombre" class="input input-bordered w-full mb-1"
+               [(ngModel)]="product.nombre" required />
+
+            <span class="label-text font-medium">Descripcion</span>
+            <input type="text" name="descripcion" placeholder="Descripcion" class="input input-bordered w-full mb-1"
+               [(ngModel)]="product.descripcion" required />
+
+            <span class="label-text font-medium">Precio</span>
+            <input type="number" name="precio" placeholder="Precio de venta" class="input input-bordered w-full mb-1"
+               [(ngModel)]="product.precio" required />
+
+            <span class="label-text font-medium">Url de la imagen</span>
+            <input type="text" name="imagenUrl" placeholder="imagen" class="input input-bordered w-full mb-1"
+               [(ngModel)]="product.imagenUrl" required />
+
+            <span class="label-text font-medium">Cantidad</span>
+            <input type="number" name="cantidad" placeholder="cantidad" class="input input-bordered w-full mb-1"
+               [(ngModel)]="product.cantidad" required />
+
+            <div class="pt-4 space-y-2">
+               <button (click)="onClickAgregar()" class="btn btn-neutral w-full">
+                  Agregar
+               </button>
+               <button (click)="closeModalAgregarTaza()" class="btn btn-neutral w-full">
+                  Cancelar
+               </button>
+            </div>
+         </div>
+      </div>
+   </div>
+</dialog>
+
+<!-- Modal para editar las tazas -->
+<dialog id="my_modal_2" class="modal">
+   <div class="modal-box bg-base-100 w-full max-w-md shadow-lg rounded-lg">
+      <h2 class="text-2xl font-bold text-center mb-2">Editar Taza</h2>
+      <div>
+         <div class="flex flex-col flex-1 max-w-sm gap-1">
+            <span class="label-text font-medium">Nombre</span>
+            <input type="text" name="nombre" placeholder="Nombre" class="input input-bordered w-full mb-1"
+               [(ngModel)]="product.nombre" required />
+
+            <span class="label-text font-medium">Descripcion</span>
+            <input type="text" name="descripcion" placeholder="Descripcion" class="input input-bordered w-full mb-1"
+               [(ngModel)]="product.descripcion" required />
+
+            <span class="label-text font-medium">Precio</span>
+            <input type="number" name="precio" placeholder="Precio de venta" class="input input-bordered w-full mb-1"
+               [(ngModel)]="product.precio" required />
+
+            <span class="label-text font-medium">Url de la imagen</span>
+            <input type="text" name="imagenUrl" placeholder="imagen" class="input input-bordered w-full mb-1"
+               [(ngModel)]="product.imagenUrl" required />
+
+            <span class="label-text font-medium">Cantidad</span>
+            <input type="number" name="cantidad" placeholder="cantidad" class="input input-bordered w-full mb-1"
+               [(ngModel)]="product.cantidad" required />
+
+            <div class="pt-4 space-y-2">
+               <button (click)="onClickEditar()" class="btn btn-neutral w-full">
+                  Guardar cambios
+               </button>
+               <button (click)="closeModalEditarTaza()" class="btn btn-neutral w-full">
+                  Cancelar
+               </button>
+            </div>
+         </div>
+      </div>
+   </div>
+</dialog>

@@ -1,75 +1,34 @@
-<body class="h-screen flex flex-col">
+<div class="p-4">
 
-   <!-- Contenido principal -->
-   <div class="flex flex-1">
-      <!-- Lista de pedidos ordenados (Izquierda) -->
-      <div class="w-1/4 bg-white p-6 shadow-md overflow-y-auto h-full">
-         <h2 class="text-center text-xl font-semibold text-gray-800 mb-6">Pedidos Ordenados</h2>
-         <div class="mb-4 p-4 border border-gray-300 rounded-lg bg-gray-50">
-            <p class="text-gray-700">Pedido #001 - Fecha: 19/10/2024</p>
-            <p class="text-gray-600">Estado: En preparación</p>
+   <!-- Lista de pedidos -->
+   <div *ngIf="!cargando && pedidos.length > 0">
+     <h2 class="text-xl font-bold text-gray-800 mb-4">Mis Pedidos</h2>
+     <div *ngFor="let pedido of pedidos" class="bg-white shadow-md rounded-lg p-6 mb-4">
+       <h3 class="text-lg font-semibold text-gray-700">Pedido #{{ pedido.idPedido }}</h3>
+       <p class="text-sm text-gray-500"><strong>Fecha de compra:</strong> {{ pedido.fechaCompra  }}</p>
+       <p class="text-sm text-gray-500"><strong>Precio total:</strong> {{ pedido.precioActualTaza  }}</p>
+       <p class="text-sm text-gray-500"><strong>Estado:</strong> <span class="font-semibold" [class.text-green-600]="pedido.activo" [class.text-red-600]="!pedido.activo">{{ pedido.activo ? 'Activo' : 'Inactivo' }}</span></p>
+ 
+       <h4 class="text-md font-semibold text-gray-700 mt-4">Usuario</h4>
+       <ul class="text-sm text-gray-600">
+         <li><strong>Nombre:</strong> {{ pedido.usuario.nombre }} {{ pedido.usuario.apellidos }}</li>
+         <li><strong>Correo:</strong> {{ pedido.usuario.correo }}</li>
+         <li><strong>Dirección:</strong> {{ pedido.usuario.direccion }}</li>
+       </ul>
+ 
+       <h4 class="text-md font-semibold text-gray-700 mt-4">Artículos</h4>
+       <div *ngFor="let taza of pedido.tazas" class="flex items-center gap-4 mt-2 bg-gray-100 p-4 rounded-lg">
+         <img [src]="taza.imagenUrl" [alt]="taza.nombre" class="w-16 h-16 object-cover rounded-md">
+         <div class="text-sm text-gray-600">
+           <p><strong>Nombre:</strong> {{ taza.nombre }}</p>
+           <p><strong>Descripción:</strong> {{ taza.descripcion }}</p>
+           <p><strong>Precio:</strong> {{ taza.precio }}</p>
+           
          </div>
-         <div class="mb-4 p-4 border border-gray-300 rounded-lg bg-gray-50">
-            <p class="text-gray-700">Pedido #002 - Fecha: 18/10/2024</p>
-            <p class="text-gray-600">Estado: Enviado</p>
-         </div>
-         <div class="mb-4 p-4 border border-gray-300 rounded-lg bg-gray-50">
-            <p class="text-gray-700">Pedido #003 - Fecha: 17/10/2024</p>
-            <p class="text-gray-600">Estado: Entregado</p>
-         </div>
-      </div>
-
-      <!-- Contenedor de imágenes de pedidos (Centro) -->
-      <div class="flex flex-col items-center justify-center w-1/2 gap-6 p-4">
-         <img src="https://via.placeholder.com/400x300?text=Pedido+1" alt="Imagen del Pedido 1"
-            class="rounded-lg shadow-md">
-         <img src="https://via.placeholder.com/400x300?text=Pedido+2" alt="Imagen del Pedido 2"
-            class="rounded-lg shadow-md">
-         <img src="https://via.placeholder.com/400x300?text=Pedido+3" alt="Imagen del Pedido 3"
-            class="rounded-lg shadow-md">
-      </div>
-
-      <!-- Contenedor de pedidos realizados (Derecha) -->
-      <div class="w-1/4 bg-white p-6 rounded-lg shadow-md max-w-xs h-full overflow-y-auto">
-         <h1 class="text-lg font-semibold text-gray-800 mb-6">Pedidos Realizados</h1>
-         <div class="mb-4 p-4 border border-gray-300 rounded-lg">
-            <p class="tracking-code font-bold text-gray-700">Código: <span>1234567890</span></p>
-            <p class="text-blue-500 hover:underline"><a href="https://www.fedex.com/es-mx/home.html"
-                  target="_blank">Rastrear en FedEx</a></p>
-            <div class="mt-4 flex justify-between">
-               <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
-                  onclick="cancelOrder('1234567890')">Cancelar</button>
-            </div>
-         </div>
-
-         <div class="mb-4 p-4 border border-gray-300 rounded-lg">
-            <p class="tracking-code font-bold text-gray-700">Código: <span>0987654321</span></p>
-            <p class="text-blue-500 hover:underline"><a href="https://www.fedex.com/es-mx/home.html"
-                  target="_blank">Rastrear en FedEx</a></p>
-            <div class="mt-4 flex justify-between">
-               <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
-                  onclick="cancelOrder('0987654321')">Cancelar</button>
-            </div>
-         </div>
-
-         <div class="mb-4 p-4 border border-gray-300 rounded-lg">
-            <p class="tracking-code font-bold text-gray-700">Código: <span>0987654321</span></p>
-            <p class="text-blue-500 hover:underline"><a href="https://www.fedex.com/es-mx/home.html"
-                  target="_blank">Rastrear en FedEx</a></p>
-            <div class="mt-4 flex justify-between">
-               <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
-                  onclick="cancelOrder('0987654321')">Cancelar</button>
-            </div>
-         </div>
-      </div>
+       </div>
+     </div>
    </div>
-
-   <script>
-      function cancelOrder(trackingCode) {
-         if (confirm(`¿Estás seguro de que deseas cancelar el pedido con código: ${trackingCode}?`)) {
-            alert(`Pedido ${trackingCode} cancelado exitosamente.`);
-         }
-      }
-   </script>
-
-</body>
+ 
+   
+ </div>
+ 
