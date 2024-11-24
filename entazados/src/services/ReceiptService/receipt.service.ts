@@ -1,19 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../../models/Product.model';
+import { Usuario } from '../../models/Usuario.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ReceiptService {
-  generateReceipt(items: Product[], total: number) {
+  generateReceipt(items: Product[], fecha:Date, subTotal:number, envio:number, user:Usuario) {
+    let iva = subTotal * .16;
     let receiptContent = `<?xml version="1.0" encoding="UTF-8" ?> \n`;
+    receiptContent += ` <fechaprueba>${fecha}</fechaprueba>\n`;
     receiptContent +=
-      '<recibo>\n  <idCliente>1</idCliente>\n  <nombreCliente>admin</nombreCliente>\n  <pedido>';
+      `<recibo>\n <idRecibo>1</idRecibo>  <fecha>${fecha}</fecha>\n <vendedor>EnTazados</vendedor> <idCliente>${user.id}</idCliente>\n  <nombreCliente>${user.nombre}</nombreCliente>\n  <pedido>`;
     items.forEach((item) => {
       receiptContent += `   <producto>\n      <idProducto>${item.id}</idProducto>\n     <nombreProducto>${item.nombre}</nombreProducto>\n     <precio>${item.precio}</precio>\n   </producto>\n`;
     });
     receiptContent += ' </pedido>\n';
-    receiptContent += ` <total>${total}</total>\n`;
+    receiptContent += ` <subTotal>${subTotal}</subTotal>\n`;
+    receiptContent += ` <iva>${iva}</iva>\n`;
+    receiptContent += ` <envio>${envio}</envio>\n`;
+    receiptContent += ` <total>${subTotal + iva + envio}</total>\n`;
     receiptContent += '</recibo>';
     this.downloadFile(receiptContent, 'receipt.xml');
   }
