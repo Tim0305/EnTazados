@@ -21,6 +21,7 @@ public class Pedido {
     private Usuario usuario;
     private LocalDateTime fechaCompra;
     private Double total;
+    private Double iva;
     private List<Taza> tazas;
     private Boolean activo;
 
@@ -38,5 +39,7 @@ public class Pedido {
             this.tazas.add(compra.getTaza());
             this.total += compra.getPrecioActualTaza();
         }
+
+        this.iva = this.total * 0.16;
     }
 }

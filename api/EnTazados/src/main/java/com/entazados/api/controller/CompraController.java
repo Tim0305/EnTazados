@@ -1,7 +1,7 @@
 package com.entazados.api.controller;
 
 import com.entazados.api.domain.compras.DatosRegistroCompra;
-import com.entazados.api.domain.compras.DatosRespuestaPedidos;
+import com.entazados.api.domain.compras.DatosRespuestaPedido;
 import com.entazados.api.domain.compras.Pedido;
 import com.entazados.api.service.CompraService;
 import com.entazados.api.service.PedidoService;
@@ -22,22 +22,21 @@ public class CompraController {
     PedidoService pedidoService;
 
     @PostMapping
-    public ResponseEntity registrarCompra(@RequestBody DatosRegistroCompra datosRegistroCompra) {
-        compraService.registrarCompra(datosRegistroCompra);
-        return ResponseEntity.ok("Compra registrada correctamente");
+    public ResponseEntity<DatosRespuestaPedido> registrarCompra(@RequestBody DatosRegistroCompra datosRegistroCompra) {
+        return ResponseEntity.ok(compraService.registrarCompra(datosRegistroCompra));
     }
 
     @GetMapping
-    public ResponseEntity<List<DatosRespuestaPedidos>> getPedidos() {
+    public ResponseEntity<List<DatosRespuestaPedido>> getPedidos() {
         List<Pedido> pedidos = pedidoService.getPedidos();
 
-        return ResponseEntity.ok(pedidos.stream().map(DatosRespuestaPedidos::new).toList());
+        return ResponseEntity.ok(pedidos.stream().map(DatosRespuestaPedido::new).toList());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<List<DatosRespuestaPedidos>> getPedidosUsuario(@PathVariable Integer id) {
+    public ResponseEntity<List<DatosRespuestaPedido>> getPedidosUsuario(@PathVariable Integer id) {
         List<Pedido> pedidos = pedidoService.getPedidosUsuario(id);
 
-        return ResponseEntity.ok(pedidos.stream().map(DatosRespuestaPedidos::new).toList());
+        return ResponseEntity.ok(pedidos.stream().map(DatosRespuestaPedido::new).toList());
     }
 }

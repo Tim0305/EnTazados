@@ -1,34 +1,75 @@
 <div class="p-4">
+  <!-- Lista de pedidos -->
+  <div *ngIf="!cargando && pedidos.length > 0">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Mis Pedidos</h2>
+    <div
+      *ngFor="let pedido of pedidos"
+      class="bg-white shadow-md rounded-lg p-6 mb-4"
+    >
+      <h3 class="text-lg font-semibold text-gray-700">
+        Pedido #{{ pedido.idPedido }}
+      </h3>
+      <p class="text-sm text-gray-500">
+        <strong>Fecha de compra:</strong> {{ pedido.fechaCompra }}
+      </p>
+      <p class="text-sm text-gray-500">
+        <strong>SubTotal:</strong>
+        {{ pedido.total | currency }} MXN
+      </p>
+      <p class="text-sm text-gray-500">
+        <strong>Iva:</strong>
+        {{ pedido.iva | currency }} MXN
+      </p>
+      <p class="text-sm text-gray-500"><strong>Envio:</strong> $100 MXN</p>
+      <p class="text-sm text-gray-500">
+        <strong>Precio total:</strong>
+        {{ pedido.total + pedido.iva + 100 | currency }} MXN
+      </p>
+      <p class="text-sm text-gray-500">
+        <strong>Estado: </strong>
+        <span
+          class="font-semibold"
+          [class.text-green-600]="pedido.activo"
+          [class.text-red-600]="!pedido.activo"
+          >{{ pedido.activo ? "Activo" : "Inactivo" }}</span
+        >
+      </p>
 
-   <!-- Lista de pedidos -->
-   <div *ngIf="!cargando && pedidos.length > 0">
-     <h2 class="text-xl font-bold text-gray-800 mb-4">Mis Pedidos</h2>
-     <div *ngFor="let pedido of pedidos" class="bg-white shadow-md rounded-lg p-6 mb-4">
-       <h3 class="text-lg font-semibold text-gray-700">Pedido #{{ pedido.idPedido }}</h3>
-       <p class="text-sm text-gray-500"><strong>Fecha de compra:</strong> {{ pedido.fechaCompra  }}</p>
-       <p class="text-sm text-gray-500"><strong>Precio total:</strong> {{ pedido.precioActualTaza  }}</p>
-       <p class="text-sm text-gray-500"><strong>Estado:</strong> <span class="font-semibold" [class.text-green-600]="pedido.activo" [class.text-red-600]="!pedido.activo">{{ pedido.activo ? 'Activo' : 'Inactivo' }}</span></p>
- 
-       <h4 class="text-md font-semibold text-gray-700 mt-4">Usuario</h4>
-       <ul class="text-sm text-gray-600">
-         <li><strong>Nombre:</strong> {{ pedido.usuario.nombre }} {{ pedido.usuario.apellidos }}</li>
-         <li><strong>Correo:</strong> {{ pedido.usuario.correo }}</li>
-         <li><strong>Dirección:</strong> {{ pedido.usuario.direccion }}</li>
-       </ul>
- 
-       <h4 class="text-md font-semibold text-gray-700 mt-4">Artículos</h4>
-       <div *ngFor="let taza of pedido.tazas" class="flex items-center gap-4 mt-2 bg-gray-100 p-4 rounded-lg">
-         <img [src]="taza.imagenUrl" [alt]="taza.nombre" class="w-16 h-16 object-cover rounded-md">
-         <div class="text-sm text-gray-600">
-           <p><strong>Nombre:</strong> {{ taza.nombre }}</p>
-           <p><strong>Descripción:</strong> {{ taza.descripcion }}</p>
-           <p><strong>Precio:</strong> {{ taza.precio }}</p>
-           
-         </div>
-       </div>
-     </div>
-   </div>
- 
-   
- </div>
- 
+      <h4 class="text-md font-semibold text-gray-700 mt-4">Usuario</h4>
+      <ul class="text-sm text-gray-600">
+        <li>
+          <strong>Nombre:</strong> {{ pedido.usuario.nombre }}
+          {{ pedido.usuario.apellidos }}
+        </li>
+        <li><strong>Correo:</strong> {{ pedido.usuario.correo }}</li>
+        <li><strong>Dirección:</strong> {{ pedido.usuario.direccion }}</li>
+      </ul>
+
+      <h4 class="text-md font-semibold text-gray-700 mt-4">Envío</h4>
+      <p class="text-sm text-gray-500">
+        <strong>Código de rastreo: </strong>123456789
+      </p>
+      <br />
+      <a href="https://www.fedex.com/es-mx/tracking.html" target="_blank"
+        ><button class="btn btn-warning">Rastrear Pedido</button></a
+      >
+
+      <h4 class="text-md font-semibold text-gray-700 mt-4">Artículos</h4>
+      <div
+        *ngFor="let taza of pedido.tazas"
+        class="flex items-center gap-4 mt-2 bg-gray-100 p-4 rounded-lg"
+      >
+        <img
+          [src]="taza.imagenUrl"
+          [alt]="taza.nombre"
+          class="w-16 h-16 object-cover rounded-md"
+        />
+        <div class="text-sm text-gray-600">
+          <p><strong>Nombre:</strong> {{ taza.nombre }}</p>
+          <p><strong>Descripción:</strong> {{ taza.descripcion }}</p>
+          <p><strong>Precio:</strong> {{ taza.precio | currency }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

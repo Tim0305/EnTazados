@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../../services/OrderService/order.service'; // Ajusta la ruta según la ubicación del servicio
 import { Pedido } from '../../models/Pedido.model'; // Ajusta la ruta según la ubicación del modelo
 import { CommonModule } from '@angular/common';
-
+import { UsuarioService } from '../../services/UsuarioService/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pedidos',
@@ -16,7 +17,7 @@ export class PedidosComponent {
   cargando = true;
   error: string | null = null;
 
-  constructor(private orderService: OrderService) {}
+  constructor(private orderService: OrderService, private router: Router) {}
 
   ngOnInit(): void {
     this.cargarPedidos();
@@ -33,10 +34,9 @@ export class PedidosComponent {
       },
       error: (err) => {
         this.error = 'Error al cargar los pedidos.';
+        console.log(err);
         this.cargando = false;
       },
     });
   }
 }
-
-

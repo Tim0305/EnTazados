@@ -20,6 +20,10 @@ public class PedidoService {
         // Recuperar todas las compras ordenadas por idPedido
         List<Compra> compras = compraRepository.findAllOrderByIdPedido();
 
+        compras.forEach(c -> {
+            c.getTaza().setPrecio(c.getPrecioActualTaza());
+        });
+
         // Agrupar compras por idPedido
         Map<Integer, List<Compra>> comprasAgrupadas = compras.stream()
                 .collect(Collectors.groupingBy(Compra::getIdPedido));
@@ -33,6 +37,10 @@ public class PedidoService {
     public List<Pedido> getPedidosUsuario(Integer idUsuario) {
         // Recuperar todas las compras ordenadas por idPedido
         List<Compra> compras = compraRepository.findAllByUsuarioIdOrderByIdPedido(idUsuario);
+
+        compras.forEach(c -> {
+            c.getTaza().setPrecio(c.getPrecioActualTaza());
+        });
 
         // Agrupar compras por idPedido
         Map<Integer, List<Compra>> comprasAgrupadas = compras.stream()

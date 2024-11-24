@@ -1,13 +1,9 @@
 package com.entazados.api.service;
 
-import com.entazados.api.domain.compras.Compra;
-import com.entazados.api.domain.compras.CompraRepository;
-import com.entazados.api.domain.compras.DatosRegistroCompra;
-import com.entazados.api.domain.compras.DatosRespuestaPedidos;
+import com.entazados.api.domain.compras.*;
 import com.entazados.api.domain.taza.Taza;
 import com.entazados.api.domain.taza.TazaRepository;
 import com.entazados.api.domain.usuario.Usuario;
-import com.entazados.api.domain.usuario.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +27,7 @@ public class CompraService {
     @Autowired
     CompraRepository compraRepository;
 
-    public void registrarCompra(DatosRegistroCompra datosRegistroCompra) {
+    public DatosRespuestaPedido registrarCompra(DatosRegistroCompra datosRegistroCompra) {
         int idPedido = 1;
         // Obtener la ultima compra para establecer el id del nuevo pedido
         Compra lastCompra = getLastCompra();
@@ -40,6 +36,7 @@ public class CompraService {
 
         Usuario usuario = usuarioService.obtenerUsuarioPorId(datosRegistroCompra.idUsuario());
         LocalDateTime ldt = LocalDateTime.now();
+        List<Compra> compras = new ArrayList<>();
 
         if (usuario != null) {
             for (Integer idTaza : datosRegistroCompra.idTazas()) {
@@ -60,7 +57,9 @@ public class CompraService {
 
                 compraRepository.save(compra);
                 tazaRepository.save(taza);
+                compras.add(compra);
             }
+            return new DatosRespuestaPedido(new Pedido(compras));
         }
         else
             throw new RuntimeException("ID de Usuario incorrecto");

@@ -4,6 +4,7 @@ import { ReceiptService } from '../../services/ReceiptService/receipt.service';
 import { Product } from '../../models/Product.model';
 import { HttpClient } from '@angular/common/http';
 import { UsuarioService } from '../../services/UsuarioService/usuario.service';
+import { Pedido } from '../../models/Pedido.model';
 
 declare var paypal: any; // Declara PayPal como una variable global
 
@@ -42,7 +43,6 @@ export class PaypalButtonComponent implements OnInit {
         onApprove: (data: any, actions: any) => {
           return actions.order.capture().then((details: any) => {
             alert(`Pago completado por ${details.payer.name.given_name}!`);
-            this.receiptService.generateReceipt(this.productos, this.total);
 
             // Registrar la compra
             const idTazas: number[] = [];
@@ -50,21 +50,15 @@ export class PaypalButtonComponent implements OnInit {
               idTazas.push(producto.id);
             });
             const idUsuario = this.usuarioService.getUsuario().id;
-            this.http
-              .post(
-                this.apiURL,
-                { idTazas, idUsuario },
-                { responseType: 'text' }
-              )
-              .subscribe(
-                (response) => {
-                  console.log(response);
-                },
-                (error) => {
-                  console.error('Error al registrar la compra:', error);
-                  alert('Error al registrar la compra');
-                }
-              );
+            this.http.post(this.apiURL, { idTazas, idUsuario }).subscribe(
+              (response: any) => {
+                this.receiptService.generateReceipt(response);
+              },
+              (error) => {
+                console.error('Error al registrar la compra:', error);
+                alert('Error al registrar la compra');
+              }
+            );
 
             this.cartService.clearCart();
           });
