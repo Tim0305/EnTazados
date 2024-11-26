@@ -5,60 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto - EnTazados</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        p {
-            line-height: 1.6;
-            color: #555;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .contact-info {
-            margin-top: 20px;
-        }
-
-        .contact-info h2 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .contact-info p {
-            margin: 5px 0;
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="bg-gray-100 font-sans text-gray-800 flex items-center justify-center min-h-screen">
 
-    <div class="container">
-        <h1>Contacto</h1>
-        <div class="contact-info">
-            <h2>Ubicación</h2>
-            <p>Azucenas 892, Colonia Bugambilias, Zapopan, Jalisco, México, 45030</p>
+    <div class="bg-white rounded-lg shadow-md p-6 w-full max-w-md">
+        <h1 class="text-3xl font-bold text-gray-900 text-center mb-6">Contacto</h1>
+        <div class="contact-info space-y-6 text-center">
+            <div>
+                <h2 class="text-xl font-semibold text-gray-700">Ubicación</h2>
+                <p class="text-gray-600">
+                    Azucenas 892, Colonia Bugambilias, Zapopan, Jalisco, México, 45030
+                </p>
+            </div>
 
-            <h2>Teléfono</h2>
-            <p>+52 12 3456 7890</p>
+            <div>
+                <h2 class="text-xl font-semibold text-gray-700">Teléfono</h2>
+                <p class="text-gray-600">+52 12 3456 7890</p>
+            </div>
 
-            <h2>Correo Electrónico</h2>
-            <p><a href="mailto:EnTazados@gmail.com">EnTazadosgmail.com</a></p>
+            <div>
+                <h2 class="text-xl font-semibold text-gray-700">Correo Electrónico</h2>
+                <p class="text-blue-600 underline">
+                    <a href="mailto:EnTazados@gmail.com">contacto@entazados.com</a>
+                </p>
+            </div>
         </div>
     </div>
 
